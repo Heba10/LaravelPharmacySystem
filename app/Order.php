@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Orders extends Model
+class Order extends Model
 {
     protected $fillable = [
         'delivering_address_id',
@@ -20,5 +20,18 @@ class Orders extends Model
     }
     public function address(){
         return $this->belongsTo('App\Addresses');
+    }
+    public function statuses(){
+        return $this->belongsTo('App\Statuses');
+    }
+
+    public function medicine(){
+
+    return $this->belongsToMany('App\Medicine', 'medicine_order');
+    }
+
+
+    public function doctor(){
+        return $this->belongsTo('App\Doctor');
     }
 }
