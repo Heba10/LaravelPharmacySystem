@@ -21,6 +21,9 @@ Route::get('/admin', 'AdminController@index')->name('admins.index');
 
 Route::get('/doctors', 'DoctorController@index')->name('doctors.index');
 
+Route::get('/doctors/create', 'DoctorController@create')->name('doctors.create');
+Route::post('/doctors', 'DoctorController@store')->name('doctors.store');
+
 Route::delete('/doctors/{doctor}', 'DoctorController@destroy')->name('doctors.destroy');
 
 Route::get('/doctors/{doctor}', 'DoctorController@show')->name('doctors.show');

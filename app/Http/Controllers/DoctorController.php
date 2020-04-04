@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 use App\Doctor;
 
 class DoctorController extends Controller
@@ -30,6 +31,39 @@ class DoctorController extends Controller
            'doctor' => $doctor,
        ]);
     }
+
+
+    public function create()
+    {
+      
+
+        return view('doctors.create');
+    }
+
+    public function store()
+    {
+         //get the request data
+         $request = request();
+
+         //store the request data in the db
+         Doctor::create([
+             'name' => $request->name,
+             'national_id' =>  $request->national_id,
+             'password' =>  $request->password,
+             'image' =>  $request->image,
+             'email' =>  $request->email,
+             'is_banned' => $request->is_banned,
+             'pharamcy_id' => $request->pharamcy_id,
+         ]);
+
+         return redirect()->route('doctors.index');
+    }
+
+
+
+
+
+
 
     public function destroy() {
         $request = request();

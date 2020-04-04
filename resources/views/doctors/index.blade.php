@@ -30,6 +30,7 @@
 
           <!-- add your tables or form here -->
             <h1>Change content is here</h1>
+            <a href="{{route('doctors.create')}}" class="btn btn-success mb-5">Create Doctor</a>
             <table class="table">
               <thead>
                 <tr>
