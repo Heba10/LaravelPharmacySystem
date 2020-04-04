@@ -1,5 +1,5 @@
 
-@extends('doctor.layout.blank')
+@extends('doctors.layout.blank')
 
 @section('content')
   <!-- Content Wrapper. Contains page content -->
@@ -30,6 +30,30 @@
 
           <!-- add your tables or form here -->
             <h1>Change content is here</h1>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">name</th>
+                  <th scope="col">national_id</th>
+                  <th scope="col">image</th>
+                  <th scope="col">email</th>
+                  <th scope="col">Created At</th>
+                  <th scope="col">is_banned </th>
+                </tr>
+              </thead>
+              @foreach($doctors as $doctor)
+                <tr>
+                <th scope="row">{{ $doctor->id }}</th>
+                  <td>{{ $doctor->name }}</td>
+                  <td>{{$doctor->national_id}}</td>
+                  <td>{{ $doctor->image }}</td>
+
+                  <td>{{ $doctor->email}}</td>
+                  <td>{{ $doctor->created_at }}</td>
+                  <td>{{ $doctor->is_banned }}</td>
+                  @endforeach
+                  <td><a href="{{route('doctors.show',['doctor' => $doctor->id])}}" class="btn btn-primary btn-sm">View Details</a></td>
 
       </div><!-- /.container-fluid -->
     </div>
