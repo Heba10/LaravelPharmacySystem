@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::get('/admin', 'AdminController@index')->name('admins.index');
+Route::get('/doctor', 'DoctorController@index')->name('doctors.index');
