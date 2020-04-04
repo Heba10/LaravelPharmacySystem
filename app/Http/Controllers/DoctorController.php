@@ -59,6 +59,33 @@ class DoctorController extends Controller
          return redirect()->route('doctors.index');
     }
 
+    public function edit() {
+        $doctor = Doctor::find(request()->doctor);
+    
+        return view('doctors.edit', [
+            
+            'doctor' => $doctor
+        ]);
+    }
+    
+    public function update() {
+
+        $request = request();
+    
+        Doctor::where('id', $request->doctor)->update([
+            
+            'name' => $request->name,
+            'national_id' =>  $request->national_id,
+            'password' =>  $request->password,
+            'image' =>  $request->image,
+            'email' =>  $request->email,
+            'is_banned' => $request->is_banned,
+            'pharamcy_id' => $request->pharamcy_id,
+        ]);
+    
+        return redirect()->route('doctors.index');
+    }
+    
 
 
 
