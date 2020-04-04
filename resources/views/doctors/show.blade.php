@@ -26,11 +26,18 @@
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+        <h5 class="card-title">{{ $doctor->name }}</h5>
+          <p class="card-text">{{$doctor->national_id}}</p>
+          <p class="card-text">{{ $doctor->image }}</p>
+          <p class="card-text">{{ $doctor->email}}</p>
+        </div>
+      </div>
+    
 
 
 
-
-      
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->

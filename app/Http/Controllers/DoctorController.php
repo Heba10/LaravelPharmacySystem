@@ -31,5 +31,13 @@ class DoctorController extends Controller
        ]);
     }
 
+    public function destroy() {
+        $request = request();
+    
+        Doctor::where('id', $request->doctor)->delete();
+    
+        return redirect()->route('doctors.index');
+    }
+
     
 }

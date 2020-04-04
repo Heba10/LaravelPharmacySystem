@@ -52,8 +52,35 @@
                   <td>{{ $doctor->email}}</td>
                   <td>{{ $doctor->created_at }}</td>
                   <td>{{ $doctor->is_banned }}</td>
-                  @endforeach
+                
                   <td><a href="{{route('doctors.show',['doctor' => $doctor->id])}}" class="btn btn-primary btn-sm">View Details</a></td>
+                
+                <td><form id="Form" method="POST" action="{{route('doctors.destroy', ['doctor' => $doctor->id])}}" >
+            @csrf
+            {{method_field('DELETE')}}
+            <button type="button" onclick="deleteDoctor({{$doctor->id}})" class="btn btn-danger btn-sm">Delete</button>
+         
+         
+          </form>
+          
+          <script>
+  function deleteDoctor(id) {
+    var Form = document.querySelector(`#Form`);
+
+    var answer = confirm('are you want to delete this Doctor.... ?');
+
+    if(answer) {
+      Form.submit();
+    }
+  }
+</script> </td>
+              @endforeach
+              </tbody>
+            </table>
+            
+      </div>
+
+{{ $doctors->links() }}
 
       </div><!-- /.container-fluid -->
     </div>
