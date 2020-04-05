@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 
@@ -45,16 +45,47 @@ class DoctorController extends Controller
          //get the request data
          $request = request();
 
+
+
+
+         ////////////
+        //    if ($request->hasFile("avatar_image")) {
+        //     $path = Storage::putFile('public/avatar_image', $request->file('avatar_image'));
+        //     $User=User::create([
+        //     'name' => $request['name'],
+        //     'email' => $request['email'],
+        //     'password' => Hash::make($request['password']),
+        //     'avatar_image'=>basename($path),
+        //     'city_id'=>$request['city_id'],
+        //     ]);
+        // } elseif (! $request->hasFile("avatar_image")) {
+        //     $User=User::create([
+        //     'name' => $request['name'],
+        //     'email' => $request['email'],
+        //     'password' => Hash::make($request['password']),
+        //     'city_id'=>$request['city_id'],
+        //      ]);
+        // }
+         //////
+
          //store the request data in the db
-         Doctor::create([
+      
+            Doctor::create([
              'name' => $request->name,
              'national_id' =>  $request->national_id,
-             'password' =>  $request->password,
+             'password' =>  Hash::make($request->password),
              'image' =>  $request->image,
              'email' =>  $request->email,
              'is_banned' => $request->is_banned,
              'pharamcy_id' => $request->pharamcy_id,
+
+
+
+
          ]);
+
+
+
 
          return redirect()->route('doctors.index');
     }
