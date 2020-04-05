@@ -39,5 +39,8 @@ Route::delete('/doctors/{doctor}', 'DoctorController@destroy')->name('doctors.de
 
 Route::get('/doctors/{doctor}', 'DoctorController@show')->name('doctors.show');
 
-
+//----------------------------------------------------------------------------
 Route::get('/pharmacy', 'PharmacyController@index')->name('pharmacy.index');
+Route::get('/pharmacy/{pharmacy}','PharmacyController@show')->name('pharmacy.show');
+Route::GET('/pharmacy/{pharmacy}/edit','PharmacyController@edit')->name('pharmacy.edit');
+Route::post('/pharmacy/{pharmacy}/','PharmacyController@update')->name('pharmacy.update');

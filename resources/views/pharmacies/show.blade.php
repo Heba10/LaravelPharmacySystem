@@ -33,23 +33,17 @@
             <div class="card mb-3" style="max-width: 1000px;">
   <div class="row no-gutters">
     <div class="col-md-6">
-    
-
       <img src="https://upload.wikimedia.org/wikipedia/en/6/6b/Hello_Web_Series_%28Wordmark%29_Logo.png" class="card-img" alt="...">
     </div>
     <div class="col-md-4">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        <a href="#" class="btn btn-primary">Edite</a>
+        <h5 class="card-title">{{$pharmacy->name}}</h5>
+        <p class="card-text">Email: {{$pharmacy->email}}</p>
+        <p class="card-text">Password : {{$pharmacy->password}}</p>
+        <p class="card-text">Nationa ID : {{$pharmacy->national_id}}</p>
+        <a href="/pharmacy/{{$pharmacy->id}}/edit" class="btn btn-primary ">Edit</a>
         <a href="#" class="btn btn-primary">Delete</a>
-       
+
 
       </div>
     </div>
