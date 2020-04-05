@@ -22,7 +22,7 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-    `name`, `national_id`, `image`, `email`, `updated_at`, `created_at`
+   
     <!-- Main content -->
     <form method="POST" action="{{route('doctors.store')}}">
     @csrf

@@ -55,6 +55,8 @@
                   <td>{{ $doctor->is_banned }}</td>
                 
                   <td><a href="{{route('doctors.show',['doctor' => $doctor->id])}}" class="btn btn-primary btn-sm">View Details</a></td>
+
+                  <td><a href="{{route('doctors.edit',['doctor' => $doctor->id])}}" class="btn btn-primary btn-sm">Edit</a></td>
                 
                 <td><form id="Form" method="POST" action="{{route('doctors.destroy', ['doctor' => $doctor->id])}}" >
             @csrf
