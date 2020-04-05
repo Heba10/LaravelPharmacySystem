@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreDoctorRequest;
 
 
 use App\Doctor;
@@ -43,7 +44,7 @@ class DoctorController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(StoreDoctorRequest $request)
     {
          //get the request data
          $request = request();
