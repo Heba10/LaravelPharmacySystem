@@ -41,6 +41,7 @@
                   <th scope="col">email</th>
                   <th scope="col">Created At</th>
                   <th scope="col">is_banned </th>
+                  <th scope="col">Pharmacy Name </th>
                 </tr>
               </thead>
               @foreach($doctors as $doctor)
@@ -53,6 +54,8 @@
                   <td>{{ $doctor->email}}</td>
                   <td>{{ $doctor->created_at }}</td>
                   <td>{{ $doctor->is_banned }}</td>
+                 
+                  <td>{{ $doctor->pharamcy ? $doctor->pharamcy->name : 'not exist'}}</td>
                 
                   <td><a href="{{route('doctors.show',['doctor' => $doctor->id])}}" class="btn btn-primary btn-sm">View Details</a></td>
 

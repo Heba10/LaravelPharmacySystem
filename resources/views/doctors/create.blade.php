@@ -59,13 +59,14 @@
     </div>
 
     <div class="form-group">
-      <label >pharamcy_id</label>
       <!-- put name to can use it in controler function store -->
-      <input name="pharamcy_id" type="text" class="form-control" aria-describedby="emailHelp">
-    </div>
-    
-    
-     
+    <label for="exampleInputPassword1">Pharmacy Name</label>
+    <select name="pharamcy_id" class="form-control">
+        @foreach($pharamcys as $pharamcy)  
+          <option value="{{$pharamcy->id}}">{{$pharamcy->name}}</option>
+        @endforeach
+        </select>
+        </div>
    
   
 

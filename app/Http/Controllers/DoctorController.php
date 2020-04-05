@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 
 use App\Doctor;
+use App\Pharmacy;
 
 class DoctorController extends Controller
 {
@@ -35,9 +36,11 @@ class DoctorController extends Controller
 
     public function create()
     {
-      
+        $pharamcys = Pharmacy::all();
 
-        return view('doctors.create');
+        return view('doctors.create', [
+            'pharamcys' => $pharamcys
+        ]);
     }
 
     public function store()
@@ -46,27 +49,6 @@ class DoctorController extends Controller
          $request = request();
 
 
-
-
-         ////////////
-        //    if ($request->hasFile("avatar_image")) {
-        //     $path = Storage::putFile('public/avatar_image', $request->file('avatar_image'));
-        //     $User=User::create([
-        //     'name' => $request['name'],
-        //     'email' => $request['email'],
-        //     'password' => Hash::make($request['password']),
-        //     'avatar_image'=>basename($path),
-        //     'city_id'=>$request['city_id'],
-        //     ]);
-        // } elseif (! $request->hasFile("avatar_image")) {
-        //     $User=User::create([
-        //     'name' => $request['name'],
-        //     'email' => $request['email'],
-        //     'password' => Hash::make($request['password']),
-        //     'city_id'=>$request['city_id'],
-        //      ]);
-        // }
-         //////
 
          //store the request data in the db
       
