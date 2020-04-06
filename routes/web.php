@@ -32,7 +32,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
 
 });
 ////////////////////////////////
-
+//DOCTORS
 Route::get('/doctors', 'DoctorController@index')->name('doctors.index');
 ///////////////////////////////
 Route::get('/doctors/create', 'DoctorController@create')->name('doctors.create');
@@ -51,6 +51,15 @@ Route::delete('/doctors/{doctor}', 'DoctorController@destroy')->name('doctors.de
 ////////////////////////////
 
 Route::get('/doctors/{doctor}', 'DoctorController@show')->name('doctors.show');
+
+////////////////////////////
+// ORDERS
+Route::get('/orders', 'OrderController@index')->name('orders.index');
+
+///////////////////////////////
+Route::get('/orders/create', 'OrderController@create')->name('orders.create');
+Route::post('/orders', 'OrderController@store')->name('orders.store');
+//////////////////////////////
 
 
 Route::get('/pharmacy', 'PharmacyController@index')->name('pharmacy.index');
