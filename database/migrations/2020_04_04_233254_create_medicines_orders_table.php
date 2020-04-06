@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMedicinePharmacyTable extends Migration
+class CreateMedicinesOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateMedicinePharmacyTable extends Migration
      */
     public function up()
     {
-        Schema::create('medicine_pharmacy', function (Blueprint $table) {
+        Schema::create('medicines_orders', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('med_id')->unique();
-            $table->bigInteger('ph_id')->unique();
+            $table->bigInteger('mid_id')->unique();
+            $table->bigInteger('order_id')->unique();
+            $table->bigInteger('quantity');
+            $table->bigInteger('price');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateMedicinePharmacyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('medicine_pharmacy');
+        Schema::dropIfExists('medicines_orders');
     }
 }
