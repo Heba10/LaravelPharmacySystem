@@ -1,4 +1,4 @@
-@extends('doctors.layout.blank')
+@extends('admin.layout.blank')
 
 @section('content')
 

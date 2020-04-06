@@ -17,10 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', 'AdminController@index')->name('admins.index');
-<<<<<<< HEAD
-
 Auth::routes();
+
+Route::get('/admin', 'AdminController@index')->name('admins.index');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -31,8 +31,6 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
     Route::resource('/users', 'UserController');
 
 });
-||||||| merged common ancestors
-=======
 ////////////////////////////////
 
 Route::get('/doctors', 'DoctorController@index')->name('doctors.index');
@@ -56,4 +54,3 @@ Route::get('/doctors/{doctor}', 'DoctorController@show')->name('doctors.show');
 
 
 Route::get('/pharmacy', 'PharmacyController@index')->name('pharmacy.index');
->>>>>>> 48c59a7e99b657f4a36f50c879d576dc7543d577
