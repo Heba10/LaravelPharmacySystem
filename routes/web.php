@@ -20,6 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/admin', 'AdminController@index')->name('admins.index');
+<<<<<<< HEAD
 
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -54,3 +55,18 @@ Route::get('/doctors/{doctor}', 'DoctorController@show')->name('doctors.show');
 
 
 Route::get('/pharmacy', 'PharmacyController@index')->name('pharmacy.index');
+||||||| 0228d9d... admin index
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
+
+    Route::resource('/users', 'UserController');
+
+});
+=======
+>>>>>>> parent of 0228d9d... admin index
