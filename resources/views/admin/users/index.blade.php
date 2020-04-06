@@ -29,7 +29,14 @@
       <div class="container-fluid">
 
           <!-- add your tables or form here -->
-            <h1>Change content is here</h1>
+          @foreach ($users as $user)
+          
+            <h2>user name</h2>
+            <p>{{$user->name}}</p>
+            <h2>user email</h2>
+            <p>{{$user->email}}</p>
+              
+          @endforeach
 
       </div><!-- /.container-fluid -->
     </div>
