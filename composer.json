@@ -16,9 +16,13 @@
         "laravel/framework": "^7.0",
         "laravel/passport": "^8.4",
         "laravel/tinker": "^2.0",
+<<<<<<< HEAD
         "yajra/laravel-datatables-buttons": "^4.0",
         "yajra/laravel-datatables-html": "^4.0",
         "yajra/laravel-datatables-oracle": "~9.0"
+=======
+        "laravel/ui": "^2.0"
+>>>>>>> ef2bb8c447d9c3cb341a3367ca193b544682c82b
     },
     "require-dev": {
         "facade/ignition": "^2.0",

@@ -1,6 +1,7 @@
-@extends('doctors.layout.blank')
+@extends('admin.layout.blank')
 
 @section('content')
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
 
@@ -41,13 +42,14 @@
       <!-- put name to can use it in controler function store -->
       <input name="password" type="text" class="form-control" aria-describedby="emailHelp">
     </div>
-    <div class="form-group">
-      <label >image</label>
-      <!-- put name to can use it in controler function store -->
-      <input name="image" type="text" class="form-control" aria-describedby="emailHelp">
+
+     <div class="form-group">
+    <input type="file"  name="image" id="image" class='image'>
     </div>
-    <div class="form-group">
+
+<div class="form-group">
       <label >email</label>
+
       <!-- put name to can use it in controler function store -->
       <input name="email" type="text" class="form-control" aria-describedby="emailHelp">
     </div>
@@ -58,17 +60,18 @@
     </div>
 
     <div class="form-group">
-      <label >pharamcy_id</label>
       <!-- put name to can use it in controler function store -->
-      <input name="pharamcy_id" type="text" class="form-control" aria-describedby="emailHelp">
-    </div>
-    
-    
-     
+    <label for="exampleInputPassword1">Pharmacy Name</label>
+    <select name="pharmacy_id" class="form-control">
+        @foreach($pharamcys as $pharamcy)  
+          <option value="{{$pharamcy->id}}">{{$pharamcy->name}}</option>
+        @endforeach
+        </select>
+        </div>
    
   
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+         <button type="submit" class="btn btn-primary">Submit</button>
   </form>
     
 

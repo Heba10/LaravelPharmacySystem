@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreDoctorRequest;
 
 
 use App\Doctor;
+use App\Pharmacy;
 
 class DoctorController extends Controller
 {
@@ -35,35 +37,47 @@ class DoctorController extends Controller
 
     public function create()
     {
-      
+        $pharamcys = Pharmacy::all();
 
-        return view('doctors.create');
+        return view('doctors.create', [
+            'pharamcys' => $pharamcys
+        ]);
     }
 
     public function store()
     {
          //get the request data
          $request = request();
+         
 
          //store the request data in the db
-         Doctor::create([
+      
+            Doctor::create([
              'name' => $request->name,
              'national_id' =>  $request->national_id,
-             'password' =>  $request->password,
-             'image' =>  $request->image,
+             'password' =>  Hash::make($request->password),
+             'image' =>   $request->image,
              'email' =>  $request->email,
              'is_banned' => $request->is_banned,
-             'pharamcy_id' => $request->pharamcy_id,
+             'pharmacy_id' => $request->pharmacy_id,
+
+
+
+
          ]);
+
+
+
 
          return redirect()->route('doctors.index');
     }
 
     public function edit() {
+        $Pharmacys = Pharmacy::all();
         $doctor = Doctor::find(request()->doctor);
     
         return view('doctors.edit', [
-            
+            'Pharmacys' => $Pharmacys,
             'doctor' => $doctor
         ]);
     }
@@ -80,7 +94,7 @@ class DoctorController extends Controller
             'image' =>  $request->image,
             'email' =>  $request->email,
             'is_banned' => $request->is_banned,
-            'pharamcy_id' => $request->pharamcy_id,
+            'pharmacy_id' => $request->pharmacy_id,
         ]);
     
         return redirect()->route('doctors.index');

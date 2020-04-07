@@ -38,15 +38,12 @@
       <input name="is_banned" value="{{$doctor->is_banned}}" type="text" class="form-control" aria-describedby="emailHelp">
     </div>
 
-   
+    <div class="form-group">
+      <label >pharamcy_id</label>
+      <!-- put name to can use it in controler function store -->
+      <input name="pharamcy_id"  value="{{$doctor->pharamcy_id}}" type="text" class="form-control" aria-describedby="emailHelp">
+    </div>
     
-    <select name="pharamcy_id" class="form-control">
-        @foreach($Pharmacys as $pharamcy)  
-          <option value="{{$pharamcy->id}}">{{$pharamcy->name}}</option>
-        @endforeach
-        </select>
-        </div>
-
     <button type="submit" class="btn btn-primary">Update</button>
   </form>
     
