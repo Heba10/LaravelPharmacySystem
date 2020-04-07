@@ -1,4 +1,4 @@
-@extends('doctors.layout.blank')
+@extends('pharmacies.layout.blank')
 
 @section('content')
   <!-- Content Wrapper. Contains page content -->

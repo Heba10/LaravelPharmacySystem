@@ -16,7 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('delivering_address_id');
-            $table->text('doctor_id');
+            $table->bigInteger('doctor_id');
             $table->boolean('is_insured');
             $table->bigInteger('status_id');
             $table->bigInteger('pharmacy_id');

@@ -11,7 +11,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Doctors Page</h1> <!-- here we can add title to every page -->
+            <h1 class="m-0 text-dark">Orders </h1> <!-- here we can add title to every page -->
           </div><!-- /.col -->
           {{-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -29,36 +29,18 @@
       <div class="container-fluid">
 
           <!-- add your tables or form here -->
-            <h1>Change content is here</h1>
-            <a href="{{route('orders.create')}}" class="btn btn-success mb-5">ADD ORDER</a>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Ordered User Name</th>
-                  <th scope="col">Delivering Address</th>
-                  <th scope="col">Creation Date</th>
-                  <th scope="col">Doctor Name</th>
-                  <th scope="col">Is Insured</th>
-                  <th scope="col">Status </th>
-                  <th scope="col">Actions </th>
-                </tr>
-              </thead>
-              @foreach($orders as $order)
-                <tr>
-                <th scope="row">{{ $order->id }}</th>
-                <td>{{ $order->user ? $order->user->name : 'not exist'}}</td>
-                
-                  <td>{{$order->delivering_address_id}}</td>
-                  <td>{{ $order->created_at }}</td>
-
-                  <td>{{ $order->doctor_id}}</td>
-                  <td>{{ $order->is_insured }}</td>
-                  <td>{{ $order->Status }}</td>
-            
-                  @endforeach
-
-
+           {{ $dataTable->table() }}
+           <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous">
+         </script>
+           <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+          <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+          <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+          <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.bootstrap4.min.js"></script>
+          <script src="{{url('/vendor/datatables/buttons.server-side.js')}}"></script>
+           {{ $dataTable->scripts()}}
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->

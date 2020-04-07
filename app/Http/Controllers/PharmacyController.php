@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Pharmacy; 
 use App\Http\Requests\PharmacyRequest;
+use Illuminate\Support\Facades\Hash;
 
 
 
@@ -13,7 +14,7 @@ class PharmacyController extends Controller
 {
     public function index()
     {
-            $Pharmacies = Pharmacy::all();
+            $Pharmacies = Pharmacy::paginate(5);
             return view('pharmacies.index',[
                 'Pharmacies' => $Pharmacies
                 ]);
@@ -40,8 +41,9 @@ class PharmacyController extends Controller
     { 
     // dd($request->image->store('images','public'));
      Pharmacy::create([
+      /*  [ if ($request->hasFile("image")) { */
        'name' => $request->name,
-       'password' =>$request->password,
+       'password' => Hash::make($request->password),
        'email' =>$request->email,
        'area_id' =>$request->area_id,
        'priority' =>$request->priority,
