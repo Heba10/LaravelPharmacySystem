@@ -39,7 +39,23 @@ Route::delete('/doctors/{doctor}', 'DoctorController@destroy')->name('doctors.de
 
 Route::get('/doctors/{doctor}', 'DoctorController@show')->name('doctors.show');
 
+
 //----------------------------------------------------------------------------
+
+
+Route::get('/orders', 'OrderController@index')->name('orders.index');
+
+///////////////////////////////
+Route::get('/orders/create', 'OrderController@create')->name('orders.create');
+Route::post('/orders', 'OrderController@store')->name('orders.store');
+//////////////////////////////
+
+/////////////////////////////
+Route::delete('/orders/{order}', 'OrderController@destroy')->name('orders.destroy');
+////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//pharmacy
 Route::get('/pharmacy', 'PharmacyController@index')->name('pharmacy.index');
 Route::get('/pharmacy/create','PharmacyController@create')->name('pharmacy.create');
 Route::post('/pharmacy','PharmacyController@store')->name('pharmacy.store');
