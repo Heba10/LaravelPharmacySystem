@@ -19,8 +19,7 @@ class CreateMedicineOrderTable extends Migration
             $table->bigInteger('order_id')->unique();
             $table->bigInteger('quantity');
             $table->bigInteger('price');
-
-
+            $table->string('preceptions')->max(150);
 
 
             

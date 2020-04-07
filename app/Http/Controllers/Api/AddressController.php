@@ -85,7 +85,6 @@ class AddressController extends Controller
         
         Address::find($request->address)->delete();
         return response(['Success ,Address deleted successfully'],200)->header('Content-Type','application/json');
-
-
+       
      }
 }

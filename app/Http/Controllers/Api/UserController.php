@@ -8,6 +8,8 @@ use App\User;
 use DateTime;
 use App\Address;
 use App\Order;
+use App\Http\Resources\OrderResource;
+
 class UserController extends Controller
 {
     //--------------------this function for user to update his profile info
@@ -30,8 +32,8 @@ class UserController extends Controller
     public function index(Request $request){
            $userID=$request->user;
            if(User::find($userID)){
-           $addresses=Order::all()->where('user_id',$userID);
-           return $addresses;  
+           $orders=Order::all()->where('order_user_id',$userID);
+           return $orders;  
            }
            else{
             return response(['Error'=>'Not exist , plz check the id'],404)->header('Content-Type', 'application/json');
@@ -41,7 +43,7 @@ class UserController extends Controller
     public function show(Request $request){
         $orderId=$request->order;
         if(Order::find($orderId)){
-            return Order::find($orderId);
+            return new  OrderResource(Order::find($orderId));
         }
         else{
             return response(['Error'=>'Not exist , plz check the id'],404)->header('Content-Type', 'application/json');

@@ -11,7 +11,11 @@ class Order extends Model
         'is_insured',
         'status_id',
         'pharmacy_id',
-        'order_user_id'
+        'order_user_id',
+        'doctor_id',
+        'creator_type',
+        'total_price',
+        'perceptions'
     ];
 
     public function user(){

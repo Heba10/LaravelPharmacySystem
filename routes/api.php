@@ -33,4 +33,11 @@ Route::post('/addresses','Api\AddressController@store');
 //---------------------------this Route to update el user info
 Route::put('/users/{user}','Api\UserController@update');
 //-------------------------this Route to view all orders of certain user
-Route::get('/orders/{user}','Api\UserController@index');
+Route::get('/users/{user}/orders','Api\UserController@index');
+//--------------------------this Route to view certain order details
+Route::get('users/{user}/orders/{order}','Api\UserController@show');
+//------------------------this Route to add new order 
+Route::post('users/{user}/orders','Api\OrderController@store');
+//-----------------------------this Route to edit order details
+Route::put('users/{user}/orders/{order}','Api\OrderController@update');
+
