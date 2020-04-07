@@ -52,8 +52,7 @@ Route::delete('/doctors/{doctor}', 'DoctorController@destroy')->name('doctors.de
 
 Route::get('/doctors/{doctor}', 'DoctorController@show')->name('doctors.show');
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// ORDERS
+
 Route::get('/orders', 'OrderController@index')->name('orders.index');
 
 ///////////////////////////////
