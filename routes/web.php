@@ -22,9 +22,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
+Route::namespace('Admin')->group(function(){
 
-    Route::resource('/users', 'UserController');
+    Route::resource('/admins', 'UserController');
 
 });
 ////////////////////////////////
@@ -50,3 +50,5 @@ Route::get('/doctors/{doctor}', 'DoctorController@show')->name('doctors.show');
 
 
 Route::get('/pharmacy', 'PharmacyController@index')->name('pharmacy.index');
+
+

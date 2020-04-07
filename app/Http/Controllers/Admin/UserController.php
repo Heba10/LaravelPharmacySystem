@@ -12,7 +12,7 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -24,7 +24,7 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view('admin.users.index',[
+        return view('admin.index',[
             'users' => $users
         ]);
     }
