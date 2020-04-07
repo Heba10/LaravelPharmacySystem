@@ -6,9 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pharmacy extends Model
 {
-    //
-
-
+    protected $fillable = [
+        'name',
+        'national_id',
+        'password',
+        'image',
+        'email',
+      
+    ];
     
     public function medicine()
     { 

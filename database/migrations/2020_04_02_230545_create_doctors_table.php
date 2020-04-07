@@ -21,7 +21,7 @@ class CreateDoctorsTable extends Migration
             $table->text('image');
             $table->string('email')->unique();
             $table->boolean('is_banned');
-            $table->bigInteger('pharamcy_id');
+            $table->bigInteger('pharmacy_id');
 
 
 

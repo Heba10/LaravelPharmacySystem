@@ -1,4 +1,3 @@
-
 @extends('admin.layout.blank')
 
 @section('content')
@@ -11,7 +10,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Admin Page</h1> <!-- here we can add title to every page -->
+            <h1 class="m-0 text-dark">Doctors Page</h1> <!-- here we can add title to every page -->
           </div><!-- /.col -->
           {{-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -27,16 +26,17 @@
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+        <h5 class="card-title">{{ $doctor->name }}</h5>
+          <p class="card-text">{{$doctor->national_id}}</p>
+          <p class="card-text">{{ $doctor->image }}</p>
+          <p class="card-text">{{ $doctor->email}}</p>
+        </div>
+      </div>
+    
 
-          <!-- add your tables or form here -->
-          @foreach ($users as $user)
-          
-            <h2>user name</h2>
-            <p>{{$user->name}}</p>
-            <h2>user email</h2>
-            <p>{{$user->email}}</p>
-              
-          @endforeach
+
 
       </div><!-- /.container-fluid -->
     </div>
@@ -44,4 +44,3 @@
   </div>
   <!-- /.content-wrapper -->
   @endsection
- 
