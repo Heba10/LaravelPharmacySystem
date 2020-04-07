@@ -44,12 +44,11 @@ class DoctorController extends Controller
         ]);
     }
 
-    public function store(StoreDoctorRequest $request)
+    public function store()
     {
          //get the request data
          $request = request();
-
-
+         
 
          //store the request data in the db
       
@@ -57,10 +56,10 @@ class DoctorController extends Controller
              'name' => $request->name,
              'national_id' =>  $request->national_id,
              'password' =>  Hash::make($request->password),
-             'image' =>  $request->image,
+             'image' =>   $request->image,
              'email' =>  $request->email,
              'is_banned' => $request->is_banned,
-             'pharamcy_id' => $request->pharamcy_id,
+             'pharmacy_id' => $request->pharmacy_id,
 
 
 
@@ -74,10 +73,11 @@ class DoctorController extends Controller
     }
 
     public function edit() {
+        $Pharmacys = Pharmacy::all();
         $doctor = Doctor::find(request()->doctor);
     
         return view('doctors.edit', [
-            
+            'Pharmacys' => $Pharmacys,
             'doctor' => $doctor
         ]);
     }
@@ -94,7 +94,7 @@ class DoctorController extends Controller
             'image' =>  $request->image,
             'email' =>  $request->email,
             'is_banned' => $request->is_banned,
-            'pharamcy_id' => $request->pharamcy_id,
+            'pharmacy_id' => $request->pharmacy_id,
         ]);
     
         return redirect()->route('doctors.index');
