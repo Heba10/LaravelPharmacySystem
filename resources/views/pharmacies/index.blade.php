@@ -11,8 +11,9 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Pharmacy Page</h1> <!-- here we can add title to every page -->
+            <h1 style="color:red" align="right"><strong>Pharmacies</strong></h1> <!-- here we can add title to every page -->
           </div><!-- /.col -->
+          
           {{-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -28,37 +29,49 @@
     <div class="content">
       <div class="container-fluid">
 
-          <!-- add your tables or form here -->
-            <h1>Change content is here</h1>
-            <div class="card mb-3" style="max-width: 1000px;">
-  <div class="row no-gutters">
-    <div class="col-md-6">
-    
+          <!-- add your tables or form here -->           
+<table class="table">
+  <thead class="thead-dark">
+  <a  href="/pharmacy/create" class=" btn btn-success m-3" align="right" >Create Pharmacy</a> 
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Password</th>
+      <th scope="col">National.ID</th>
+      <th scope="col">Image</th>
+      <th scope="col">Area.ID</th>
+      <th scope="col">Priority</th>
+      <th scope="col">View</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
 
-      <img src="https://upload.wikimedia.org/wikipedia/en/6/6b/Hello_Web_Series_%28Wordmark%29_Logo.png" class="card-img" alt="...">
-    </div>
-    <div class="col-md-4">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
 
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        <a href="#" class="btn btn-primary">Edite</a>
-        <a href="#" class="btn btn-primary">Delete</a>
-       
+    </tr>
+  </thead>
+  <tbody>
+  @foreach($Pharmacies as $pharmacy)
 
-      </div>
-    </div>
-  </div>
+  <th scope="row">{{$pharmacy->id}}</th>
+      <td>{{$pharmacy->name}}</td>
+      <td>{{$pharmacy->email}}</td>
+      <td>{{$pharmacy->password}}</td>
+      <td>{{$pharmacy->national_id}}</td>
+      <td><img src="{{asset('storage/' . $pharmacy->image)}}" alt="image" width="100px" height="50px"></td>
+      <td>{{$pharmacy->area_id}}</td>
+      <td>{{$pharmacy->priority}}</td>
+      <td><a href="/pharmacies/{{$pharmacy->id}}" class="btn btn-success btn-sm">view</a></td>
+      <td><a href="/pharmacies/{{$pharmacy->id}}/edit" class="btn btn-primary btn-sm">Edit</a></td>
+      @csrf
+      {{method_field('DELETE')}}
+      <td><a   onclick="return confirm('Are you sure you want to delete this pharmacy ({{$pharmacy->name}})?')" href="/pharmacy/{{$pharmacy->id}}/delete" class="btn btn-danger btn-sm" >delete</a></td>
+
+    </tr>
+    @endforeach
+  </tbody>
+</table>
 </div>
-</div>
-
-
-      </div><!-- /.container-fluid -->
+</div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
   </div>

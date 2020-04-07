@@ -41,6 +41,9 @@ Route::get('/doctors/{doctor}', 'DoctorController@show')->name('doctors.show');
 
 //----------------------------------------------------------------------------
 Route::get('/pharmacy', 'PharmacyController@index')->name('pharmacy.index');
+Route::get('/pharmacy/create','PharmacyController@create')->name('pharmacy.create');
+Route::post('/pharmacy','PharmacyController@store')->name('pharmacy.store');
 Route::get('/pharmacy/{pharmacy}','PharmacyController@show')->name('pharmacy.show');
 Route::GET('/pharmacy/{pharmacy}/edit','PharmacyController@edit')->name('pharmacy.edit');
 Route::post('/pharmacy/{pharmacy}/','PharmacyController@update')->name('pharmacy.update');
+Route::get('/pharmacy/{pharmacy}/delete','PharmacyController@destroy')->name('pharmacy.destory');
