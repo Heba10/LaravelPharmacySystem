@@ -55,7 +55,7 @@
                   <td>{{ $doctor->created_at }}</td>
                   <td>{{ $doctor->is_banned }}</td>
                  
-                  <td>{{ $doctor->pharamcy ? $doctor->pharamcy->name : 'not exist'}}</td>
+                  <td>{{ $doctor->pharmacy ? $doctor->pharmacy->name : 'not exist'}}</td>
                 
                   <td><a href="{{route('doctors.show',['doctor' => $doctor->id])}}" class="btn btn-primary btn-sm">View Details</a></td>
 

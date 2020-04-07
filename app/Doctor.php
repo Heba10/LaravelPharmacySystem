@@ -13,7 +13,7 @@ class Doctor extends Model
         'image',
         'email',
         'is_banned',
-        'pharamcy_id',
+        'pharmacy_id',
       
     ];
 

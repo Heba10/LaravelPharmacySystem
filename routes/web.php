@@ -52,7 +52,7 @@ Route::delete('/doctors/{doctor}', 'DoctorController@destroy')->name('doctors.de
 
 Route::get('/doctors/{doctor}', 'DoctorController@show')->name('doctors.show');
 
-////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
 // ORDERS
 Route::get('/orders', 'OrderController@index')->name('orders.index');
 
@@ -61,5 +61,10 @@ Route::get('/orders/create', 'OrderController@create')->name('orders.create');
 Route::post('/orders', 'OrderController@store')->name('orders.store');
 //////////////////////////////
 
+/////////////////////////////
+Route::delete('/orders/{order}', 'OrderController@destroy')->name('orders.destroy');
+////////////////////////////
 
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//pharmacy
 Route::get('/pharmacy', 'PharmacyController@index')->name('pharmacy.index');

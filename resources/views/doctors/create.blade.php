@@ -1,15 +1,7 @@
 @extends('admin.layout.blank')
 
 @section('content')
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
 
@@ -70,7 +62,7 @@
     <div class="form-group">
       <!-- put name to can use it in controler function store -->
     <label for="exampleInputPassword1">Pharmacy Name</label>
-    <select name="pharamcy_id" class="form-control">
+    <select name="pharmacy_id" class="form-control">
         @foreach($pharamcys as $pharamcy)  
           <option value="{{$pharamcy->id}}">{{$pharamcy->name}}</option>
         @endforeach

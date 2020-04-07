@@ -1,15 +1,7 @@
 @extends('admin.layout.blank')
 
 @section('content')
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
 
@@ -33,7 +25,7 @@
     <!-- /.content-header -->
    
     <!-- Main content -->
-    <form method="POST" action="{{route('doctors.store')}}">
+    <form method="POST" action="{{route('orders.store')}}">
     @csrf
   
 
@@ -46,8 +38,30 @@
         @endforeach
         </select>
         </div>
-   
+
+
+        <div class="form-group">
+      <label >Delivering Address</label>
+      <input name="delivering_address_id" type="text" class="form-control" aria-describedby="emailHelp">
+    </div>
   
+    <div class="form-group">
+      <label >Doctor Name</label>
+      <input name="doctor_id" type="text" class="form-control" aria-describedby="emailHelp">
+    </div>
+  
+    <div class="form-group">
+      <label >Is Insured</label>
+      <input name="is_insured" type="text" class="form-control" aria-describedby="emailHelp">
+    </div>
+
+
+    <div class="form-group">
+      <label >Status</label>
+      <input name="status_id" type="text" class="form-control" aria-describedby="emailHelp">
+    </div>
+
+
 
          <button type="submit" class="btn btn-primary">Submit</button>
   </form>

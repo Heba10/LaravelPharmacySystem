@@ -44,8 +44,19 @@
                   <th scope="col">Actions </th>
                 </tr>
               </thead>
+              @foreach($orders as $order)
+                <tr>
+                <th scope="row">{{ $order->id }}</th>
+                <td>{{ $order->user ? $order->user->name : 'not exist'}}</td>
+                
+                  <td>{{$order->delivering_address_id}}</td>
+                  <td>{{ $order->created_at }}</td>
+
+                  <td>{{ $order->doctor_id}}</td>
+                  <td>{{ $order->is_insured }}</td>
+                  <td>{{ $order->Status }}</td>
             
-          
+                  @endforeach
 
 
       </div><!-- /.container-fluid -->
