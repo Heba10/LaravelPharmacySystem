@@ -50,7 +50,8 @@
                 <th scope="row">{{ $doctor->id }}</th>
                   <td>{{ $doctor->name }}</td>
                   <td>{{$doctor->national_id}}</td>
-                  <td>{{ $doctor->image }}</td>
+                  <td><img src="{{asset('storage/' . $doctor->image)}}" alt="image" width="100px" height="50px"></td>
+
 
                   <td>{{ $doctor->email}}</td>
                   <td>{{ $doctor->created_at->toDateString()}}</td>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreDoctorRequest;
+use App\Http\Requests\EditDoctorRequest;
 
 
 use App\Doctor;
@@ -46,7 +47,7 @@ class DoctorController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(StoreDoctorRequest $request)
     {
          //get the request data
          $request = request();
@@ -58,7 +59,7 @@ class DoctorController extends Controller
              'name' => $request->name,
              'national_id' =>  $request->national_id,
              'password' =>  Hash::make($request->password),
-             'image' =>   $request->image,
+             'image' =>$request->image->store('images','public'),
              'email' =>  $request->email,
              'is_banned' => $request->is_banned,
              'pharmacy_id' => $request->pharmacy_id,
@@ -84,16 +85,13 @@ class DoctorController extends Controller
         ]);
     }
     
-    public function update() {
+    public function update(EditDoctorRequest $request) {
 
         $request = request();
     
         Doctor::where('id', $request->doctor)->update([
             
             'name' => $request->name,
-            'national_id' =>  $request->national_id,
-            'password' =>  $request->password,
-            'image' =>  $request->image,
             'email' =>  $request->email,
             'is_banned' => $request->is_banned,
             'pharmacy_id' => $request->pharmacy_id,
