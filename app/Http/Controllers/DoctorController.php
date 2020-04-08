@@ -8,6 +8,8 @@ use App\Http\Requests\StoreDoctorRequest;
 
 use App\Doctor;
 use App\Pharmacy;
+use App\User;
+
 
 class DoctorController extends Controller
 {
@@ -24,13 +26,13 @@ class DoctorController extends Controller
        //take the id from url param
        $request = request();
        $doctorId = $request->doctor;
-        //sec
-      
-       $doctor = Doctor::find($doctorId);
-       
-       //send the value to the view
-       return view('doctors.show',[
+       $doctor = User::findorfail($doctorId);
+       $ban=$doctor->isBanned();
+       $unban=$doctor->isNotBanned();
+       return view('doctors.show', [
            'doctor' => $doctor,
+           'ban'=>$ban,
+           'unban'=>$unban,
        ]);
     }
 
@@ -98,6 +100,29 @@ class DoctorController extends Controller
         ]);
     
         return redirect()->route('doctors.index');
+    }
+
+
+    public function ban()
+    {
+       $request = request();
+       $userId = $request->doctor;
+      
+      // dd( User::findorfail($userId));
+       $pharamcy_owner = User::findorfail($userId);
+       $ban=$pharamcy_owner->ban();
+        //dd($ban);
+        return redirect()->route('pharmacy.index');
+    }
+
+
+    public function unban()
+    {    
+        $request = request();
+        $userId = $request->doctor;
+        $pharamcy_owner = User::findorfail($userId);
+        $pharamcy_owner->unban();
+        return redirect()->route('pharmacy.index');
     }
     
 

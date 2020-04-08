@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pharmacy; 
+use App\Doctor;
+use Illuminate\Support\Facades\Storage;
+
 use App\Http\Requests\PharmacyRequest;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,7 +19,7 @@ class PharmacyController extends Controller
     {
             $Pharmacies = Pharmacy::paginate(5);
             return view('pharmacies.index',[
-                'Pharmacies' => $Pharmacies
+                'Pharmacies' => $Pharmacies,
                 ]);
      }
 
@@ -31,6 +34,8 @@ class PharmacyController extends Controller
          'pharmacy'=>$pharmacy
        ]);
      }
+
+
      public function create()
      {
        return view('pharmacies.create');
@@ -76,14 +81,40 @@ class PharmacyController extends Controller
     
 
  
- public function update()
+ public function update(Pharmacy $pharmacy)
  {
     $request=request();
     $pharmacy_id=$request->pharmacy;
-    $pharmacy= Pharmacy::find($pharmacy_id); 
+    //$pharmacy= Pharmacy::find($pharmacy_id); 
+    if($request->hasFile('image'))
+    {
+    /*  $image=$request->image->store('images');
+     Storage::disk('public')->delete($pharmacy->image); */
+       $image = Storage::putFile('public/images', $request->file('image'));
+      $pharmacy->update([
+        'name' => $request['name'],
+        'email' => $request['email'],
+        'password' => Hash::make($request['password']),
+        'image'=>basename($path),
+        'national_id'=>$request['national_id'],
+        ]);
+    }
+    elseif (! $request->hasFile("image")) {
+      $pharmacy->update([
+      'name' => $request['name'],
+      'email' => $request['email'],
+      'password' => Hash::make($request['password']),
+      'national_id'=>$request['national_id'],
+       ]);
+  } 
+    session()->flash('success','Pharmacy updated successfuly');
+    return redirect()->route('pharmacy.index');
+   }
+
+   /* 
     $request->image;
    dd($request->file('image')->store('public/images'));
-   //dd($pharmacy->image);
+   //dd($pharmacy->image); */
   /*  dd($pharmacy->image->store('images','public'));
    $pharmacy= Pharmacy::find($pharmacy_id); 
    $pharmacy->file('image');
@@ -97,22 +128,13 @@ class PharmacyController extends Controller
    $pharmacy->image = $filename;
    }
   
-    $validatedData = $request->validate([
-    'name' => 'required|min:3',
-    'email' => 'required|email:rfc,dns',
-   ],[
-    'name.required' => 'Please enter the pharmacy name ',
-    'name.min' => 'Please the pharmacy name  has minimum of 3 character ',
-    'email.required' => 'Please enter the email field',
-    'email.email:rfc,dns' => 'Please enter a valid email address',
-   ]); 
      $pharmacy->update($request->all());
      
      return view('pharmacies.show',[
     
         'pharmacy'=>$pharmacy
         ]); */
- }
+     
 
  public function destroy()
  { 

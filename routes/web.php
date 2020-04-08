@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\DataTables\OrdersDataTable;
+use App\DataTables\pharmaciesDataTable;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,9 @@ Route::get('/doctors/{doctor}/edit', 'DoctorController@edit')->name('doctors.edi
 Route::put('/doctors/{doctor}', 'DoctorController@update')->name('doctors.update');
 Route::delete('/doctors/{doctor}', 'DoctorController@destroy')->name('doctors.destroy');
 Route::get('/doctors/{doctor}', 'DoctorController@show')->name('doctors.show');
+Route::get('/ban/{doctor}', 'DoctorController@ban')->name('Doctor.ban');
+Route::get('/unban/{doctor}', 'DoctorController@unban')->name('Doctor.unban');
+
 
 
 //----------------------------------------------------------------------------
@@ -47,6 +51,10 @@ Route::delete('/orders/{order}', 'OrderController@destroy')->name('orders.destro
 //----------------------------------------------------------------------------
 
 Route::get('/pharmacy', 'PharmacyController@index')->name('pharmacy.index');
+/* Route::get('/pharmacy', function (PharmaciesDataTable $datatable)
+{
+    return $datatable->render('pharmacies/index');
+}); */
 Route::get('/pharmacy/create','PharmacyController@create')->name('pharmacy.create');
 Route::post('/pharmacy','PharmacyController@store')->name('pharmacy.store');
 Route::get('/pharmacy/{pharmacy}','PharmacyController@show')->name('pharmacy.show');

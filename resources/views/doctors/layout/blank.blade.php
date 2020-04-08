@@ -173,24 +173,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-              Pharmacies
+                Doctors
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/pharmacy/create"  class="nav-link active">
+                <a href="/doctors/create"  class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Create Pharmacy</p>
+                  <p>Create Doctor</p>
                 </a>
               </li>
              </ul>
          
           <li class="nav-item">
-            <a href="/doctors" class="nav-link">
+            <a href="/pharmacy" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Doctors 
+                Pharmacies 
               </p>
             </a>
           </li>

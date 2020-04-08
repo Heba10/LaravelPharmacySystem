@@ -49,7 +49,7 @@
   </div>
   <div class="form-group m-3">
     <label for="exampleInputPassword1">Email</label>
-    <textarea name="email" class="form-control"></textarea>
+    <input name="email" class="form-control" aria-describedby="emailHelp">
   </div>
   <div class="form-group m-3">
     <label for="exampleInputPassword1">Area ID</label>

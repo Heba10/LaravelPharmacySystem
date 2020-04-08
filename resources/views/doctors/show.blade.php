@@ -29,9 +29,19 @@
       <div class="card" style="width: 18rem;">
         <div class="card-body">
         <h5 class="card-title">{{ $doctor->name }}</h5>
-          <p class="card-text">{{$doctor->national_id}}</p>
+          <p class="card-text">{{ $doctor->national_id}}</p>
           <p class="card-text">{{ $doctor->image }}</p>
           <p class="card-text">{{ $doctor->email}}</p>
+          <label style="color: red;">Manager status ban or not: </label>
+                  <br>
+                   @if ($ban ==1)
+                  <label > is ban  </label>
+                  <br>
+                  @endif
+                  @if ($unban ==1)
+                   <label > is unban  </label>
+                   <br>
+                  @endif
         </div>
       </div>
     
