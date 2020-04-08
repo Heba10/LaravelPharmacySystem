@@ -25,7 +25,7 @@
     <!-- /.content-header -->
    
     <!-- Main content -->
-    <form method="POST" action="{{route('doctors.store')}}">
+    <form method="POST" action="{{route('doctors.store')}}" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
       <label >name</label>

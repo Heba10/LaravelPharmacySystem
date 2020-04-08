@@ -56,7 +56,7 @@ class DoctorController extends Controller
              'name' => $request->name,
              'national_id' =>  $request->national_id,
              'password' =>  Hash::make($request->password),
-             'image' =>   $request->image,
+             'image' =>$request->image->store('images','public'),
              'email' =>  $request->email,
              'is_banned' => $request->is_banned,
              'pharmacy_id' => $request->pharmacy_id,
