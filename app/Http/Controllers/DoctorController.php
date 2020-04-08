@@ -44,7 +44,7 @@ class DoctorController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(StoreDoctorRequest $request)
     {
          //get the request data
          $request = request();

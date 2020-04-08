@@ -25,11 +25,11 @@ class StoreDoctorRequest extends FormRequest
     {
         return [
             
-                'name'=>'required',
-                'email'=>'required|unique:users|email',
+                'name'=>'required|unique:doctors',
+                'email'=>'required|unique:doctors|email',
                 'password'=>'required|min:6|',
                 'national_id'=>'required',
-                'image'=>'mimes:jpeg,jpg ',
+                'image'=>'mimes:jpeg,jpg,png',
            
         ];
 
@@ -41,11 +41,12 @@ class StoreDoctorRequest extends FormRequest
         return [
         'email.required' => 'Please Fill out This Field!',
         'name.required' => 'Please Fill out This Field!',
+        'name.unique' => 'Sorry,This name is already exist!',
          'email.unique' => 'Sorry,This Email is already exist!',
          'email.email' => 'Please enter a valid Email',
          'password.required' => 'Please Fill out This Field!',
          'password.min' => 'Your password is too short',
-            'national_id'=>'Please Fill out This Field!',
+         'national_id'=>'Please Fill out This Field!',
          'image'=>'Uploaded file is not a valid image. Only JPG and JPEG  files are allowed'
         ];
     }
