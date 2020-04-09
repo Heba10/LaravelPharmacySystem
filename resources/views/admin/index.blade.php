@@ -29,14 +29,18 @@
       <div class="container-fluid">
 
           <!-- add your tables or form here -->
-          @foreach ($users as $user)
+          {{-- @foreach ($users as $user)
           
             <h2>user name</h2>
             <p>{{$user->name}}</p>
             <h2>user email</h2>
             <p>{{$user->email}}</p>
               
-          @endforeach
+          @endforeach --}}
+          <h1>
+            @component('components.who')
+            @endcomponent
+          </h1>
 
       </div><!-- /.container-fluid -->
     </div>
