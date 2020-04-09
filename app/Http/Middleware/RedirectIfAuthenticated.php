@@ -34,7 +34,7 @@ class RedirectIfAuthenticated
 
             case 'pharmacy':
                 if (Auth::guard($guard)->check()) {
-                    return redirect()->intended(route('pharmacies.index'));
+                    return redirect()->intended(route('pharmacy.index'));
                 }
                 break;
        
