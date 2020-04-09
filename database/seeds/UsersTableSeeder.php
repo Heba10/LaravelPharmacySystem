@@ -30,41 +30,15 @@ class UsersTableSeeder extends Seeder
         // $doctorRole = Role::where('name', 'doctor')->first();
 
 
-        // $admin = User::create([
-        //     'name'      => 'admin',
-        //     'email'     => 'admin@admn.com',
-        //     'password'  => Hash::make('123456'),
-        //     'password_confirmation' => Hash::make('123456'),
-        //     'gender'    => 'Male',
-        //     'date_of_birth' => '1993-10-17',
-        //     'image'     => 'admin.jpg',
-        //     'mobile_number' => '12345678',
-        //     'national_id'   => '12345678',
-        //     'last_login_date' => '3'
-        // ]);
-
-        $pharmacy = User::create([
-            'name'      => 'pharmacy',
-            'email'     => 'pharmacy@pharmacy.com',
-            'password'  => Hash::make('123456'),
-            'password_confirmation' => Hash::make('123456'),
-            'gender'    => 'Male',
-            'date_of_birth' => '1993-10-17',
-            'image'     => 'pharmacy.jpg',
-            'mobile_number' => '12345678',
-            'national_id'   => '12345678',
-            'last_login_date' => '3'
-        ]);
-
         $doctor = User::create([
 
-            'name'            => 'doctor',
-            'email'           => 'doctor@doctor.com',
+            'name'            => 'user',
+            'email'           => 'user@user.com',
             'password'        => Hash::make('123456'),
             'password_confirmation' => Hash::make('123456'),
             'gender'          => 'Male',
             'date_of_birth'   => '1993-10-17',
-            'image'           => 'doctor.jpg',
+            'image'           => 'user.jpg',
             'mobile_number'   => '12345678',
             'national_id'     => '12345678',
             'last_login_date' => '3'
