@@ -19,27 +19,37 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
+Route::namespace('Admin')->prefix('admin')->group(function(){
 
-Route::namespace('Admin')->group(function(){
-
-    Route::resource('/admins', 'UserController');
-
+    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+    Route::get('/logout', 'Auth\AdminLoginController@adminLogout')->name('admin.logout');
+    Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+    Route::get('/', 'AdminController@index')->name('admin.index');
 });
+
 
 
 ////////////////////////////////
 //-----------------------------------------------------------------------
 
-Route::get('/doctors', 'DoctorController@index')->name('doctors.index');
-Route::get('/doctors/create', 'DoctorController@create')->name('doctors.create');
-Route::post('/doctors', 'DoctorController@store')->name('doctors.store');
-Route::get('/doctors/{doctor}/edit', 'DoctorController@edit')->name('doctors.edit');
-Route::put('/doctors/{doctor}', 'DoctorController@update')->name('doctors.update');
-Route::delete('/doctors/{doctor}', 'DoctorController@destroy')->name('doctors.destroy');
-Route::get('/doctors/{doctor}', 'DoctorController@show')->name('doctors.show');
+Route::namespace('Doctor')->prefix('doctors')->group(function(){
 
+    Route::get('/login', 'Auth\DoctorLoginController@showLoginForm')->name('doctors.login');
+    Route::get('/logout', 'Auth\DoctorLoginController@adminLogout')->name('doctors.logout');
+    Route::post('/login', 'Auth\DoctorLoginController@login')->name('doctors.login.submit');
+
+    Route::get('/', 'DoctorController@index')->name('doctors.index');
+    Route::get('/create', 'DoctorController@create')->name('doctors.create');
+    Route::post('/', 'DoctorController@store')->name('doctors.store');
+    Route::get('/{doctor}/edit', 'DoctorController@edit')->name('doctors.edit');
+    Route::put('/{doctor}', 'DoctorController@update')->name('doctors.update');
+    Route::delete('/{doctor}', 'DoctorController@destroy')->name('doctors.destroy');
+    Route::get('/{doctor}', 'DoctorController@show')->name('doctors.show');
+});
 
 //----------------------------------------------------------------------------
 
