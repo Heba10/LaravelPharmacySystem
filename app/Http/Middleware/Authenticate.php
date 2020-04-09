@@ -53,7 +53,7 @@ class Authenticate extends Middleware
                 return route('doctors.login');
             }
             if($guard === 'pharmacy'){
-                return route('pharmacies.login');
+                return route('pharmacy.login');
             }
             return route('login');
         }
