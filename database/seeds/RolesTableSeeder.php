@@ -18,13 +18,13 @@ class RolesTableSeeder extends Seeder
         // Role::truncate();
 
         //make role for admin
-        Role::create(['name' => 'admin']);
-        //make role for pharmacy
-        Role::create(['name' => 'pharmacy']);
-        //make role for doctor
-        Role::create(['name' => 'doctor']);
+        // Role::create(['name' => 'admin']);
+        // //make role for pharmacy
+        // Role::create(['name' => 'pharmacy']);
+        // //make role for doctor
+        // Role::create(['name' => 'doctor']);
 
-        Role::create(['guard_name' => 'admin', 'name' => 'manager']);
+        // Role::create(['guard_name' => 'admin', 'name' => 'manager']);
 
     }
 }
