@@ -49,7 +49,7 @@ class DoctorLoginController extends Controller
 
     public function doctorLogout()
     {
-        Auth::guard('admin')->logout();
+        Auth::guard('doctor')->logout();
 
         return redirect('/');
     }
