@@ -48,13 +48,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Logout and redirect to home page-->
+
       <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          Logout
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+
+        @component('components.who')
+
+        @endcomponent
+
+        </div>
+          
+
+
+      {{-- <li class="nav-item dropdown">
         @component('components.who')
         @endcomponent
-        {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-          @csrf
-        </form> --}}
-      </li>
+
+
+
+      </li> --}}
 
     </ul>
     
