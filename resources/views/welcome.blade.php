@@ -83,6 +83,11 @@
                 <div class="title m-b-md">
                     Laravel
                 </div>
+                <div class="title m-b-md">
+                    @component('components.who')
+                        
+                    @endcomponent
+                </div>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
