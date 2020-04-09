@@ -49,9 +49,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <ul class="navbar-nav ml-auto">
       <!-- Logout and redirect to home page-->
       <li class="nav-item dropdown">
-        <a class="nav-link" href="{{ route('admin.logout') }}">
-            {{ __('Logout') }}
-        </a>
+        @component('components.who')
+        @endcomponent
         {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
           @csrf
         </form> --}}
