@@ -55,17 +55,15 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('user.logout') }}">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <a href="{{ route('admins.index') }}"> Admin Panel</a>
+                                    <a href="{{ route('admin.index') }}"> Admin Panel</a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
-                                    </form>
+                                    </form> --}}
                                 </div>
                             </li>
                         @endguest
