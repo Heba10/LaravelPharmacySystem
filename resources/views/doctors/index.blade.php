@@ -1,5 +1,5 @@
 
-@extends('doctors.layout.blank')
+@extends('admin.layout.blank')
 
 @section('content')
   <!-- Content Wrapper. Contains page content -->
