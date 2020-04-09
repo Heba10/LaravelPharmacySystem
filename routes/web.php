@@ -39,7 +39,7 @@ Route::namespace('Admin')->prefix('admin')->group(function(){
 Route::namespace('Doctor')->prefix('doctors')->group(function(){
 
     Route::get('/login', 'Auth\DoctorLoginController@showLoginForm')->name('doctors.login');
-    Route::get('/logout', 'Auth\DoctorLoginController@adminLogout')->name('doctors.logout');
+    Route::get('/logout', 'Auth\DoctorLoginController@doctorLogout')->name('doctors.logout');
     Route::post('/login', 'Auth\DoctorLoginController@login')->name('doctors.login.submit');
 
     Route::get('/', 'DoctorController@index')->name('doctors.index');
@@ -64,12 +64,19 @@ Route::delete('/orders/{order}', 'OrderController@destroy')->name('orders.destro
 
 //----------------------------------------------------------------------------
 
-Route::get('/pharmacy', 'PharmacyController@index')->name('pharmacy.index');
+Route::namespace('Pharmacy')->prefix('pharmacy')->group(function(){
+
+    Route::get('/login', 'Auth\PharmacyLoginController@showLoginForm')->name('pharmacy.login');
+    Route::get('/logout', 'Auth\PharmacyLoginController@pharmacyLogout')->name('pharmacy.logout');
+    Route::post('/login', 'Auth\PharmacyLoginController@login')->name('pharmacy.login.submit');
+    
+    Route::get('/', 'PharmacyController@index')->name('pharmacy.index');
 
 
-Route::get('/pharmacy/create','PharmacyController@create')->name('pharmacy.create');
-Route::post('/pharmacy','PharmacyController@store')->name('pharmacy.store');
-Route::get('/pharmacy/{pharmacy}','PharmacyController@show')->name('pharmacy.show');
-Route::GET('/pharmacy/{pharmacy}/edit','PharmacyController@edit')->name('pharmacy.edit');
-Route::post('/pharmacy/{pharmacy}/','PharmacyController@update')->name('pharmacy.update');
-Route::get('/pharmacy/{pharmacy}/delete','PharmacyController@destroy')->name('pharmacy.destory');
+    Route::get('/create','PharmacyController@create')->name('pharmacy.create');
+    Route::post('/','PharmacyController@store')->name('pharmacy.store');
+    Route::get('/{pharmacy}','PharmacyController@show')->name('pharmacy.show');
+    Route::GET('/{pharmacy}/edit','PharmacyController@edit')->name('pharmacy.edit');
+    Route::post('/{pharmacy}' ,'PharmacyController@update')->name('pharmacy.update');
+    Route::get('/{pharmacy}/delete','PharmacyController@destroy')->name('pharmacy.destory');
+});
