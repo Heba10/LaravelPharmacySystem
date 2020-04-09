@@ -26,12 +26,21 @@
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-      <div class="card" style="width: 18rem;">
+      <div class="card" style="width: 25rem;">
         <div class="card-body">
         <h5 class="card-title">{{ $doctor->name }}</h5>
           <p class="card-text">{{$doctor->national_id}}</p>
-          <p class="card-text">{{ $doctor->image }}</p>
+          <td><img src="{{asset('storage/' . $doctor->image)}}" alt="image" width="300px" height="150px"></td>
           <p class="card-text">{{ $doctor->email}}</p>
+          <label style="color: red;">Manager status ban or not: </label>
+                  <br>
+                   @if ($ban ==1)
+                   <td><a href="/ban/{{$doctor->id}}" class="btn btn-primary btn-sm">UNBAN</a></td>
+                  @endif
+                  @if ($unban ==1)
+                  <td><a href="/unban/{{$doctor->id}}" class="btn btn-primary btn-sm">BAN</a></td>
+                   <br>
+                  @endif
         </div>
       </div>
     

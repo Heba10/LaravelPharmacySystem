@@ -29,7 +29,6 @@
       <div class="container-fluid">
 
           <!-- add your tables or form here -->
-            <h1>Change content is here</h1>
 
 @if ($errors->any())
       <div class="alert alert-danger">
@@ -63,13 +62,15 @@
   </div>
 
  <div class="form-group m-3">
-    <label for="exampleInputPassword1">Photo</label>
-    <textarea   name="image" class="form-control" >{{$pharmacy->image}}</textarea>
-    
+    <label for="exampleInputPassword1">Image</label>
+    <div>
+    <img src="{{asset('storage/' . $pharmacy->image)}}" alt="image" width="100px" height="100px">
+    </div>
+</div>    
   <div class="input-group">
     <div class="custom-file">
-    <label class="custom-file-label">upload photo</label>
-    <input type="file"    class="custom-file-input"   name="image">
+    <label class="custom-file-label">Upload Image</label>
+    <input type ="file"    class="custom-file-input"   name="image">
   </div>
   </div>
 

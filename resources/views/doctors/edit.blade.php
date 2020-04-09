@@ -4,6 +4,16 @@
 
     <!-- Main content -->
     <form method="POST" action="{{route('doctors.update',['doctor' => $doctor->id])}}" style="width: 60%; margin: 3rem auto;">
+    
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     @csrf
     {{method_field('PUT')}}
     <div class="form-group">
@@ -12,21 +22,8 @@
     </div>
     
     
-    <div class="form-group">
-      <label >national_id</label>
-      <!-- put name to can use it in controler function store -->
-      <input name="national_id" value="{{$doctor->national_id}}" type="text" class="form-control" aria-describedby="emailHelp">
-    </div>
-    <div class="form-group">
-      <label >password</label>
-      <!-- put name to can use it in controler function store -->
-      <input name="password" value="{{$doctor->password}}" type="text" class="form-control" aria-describedby="emailHelp">
-    </div>
-    <div class="form-group">
-      <label >image</label>
-      <!-- put name to can use it in controler function store -->
-      <input name="image" value="{{$doctor->image}}" type="text" class="form-control" aria-describedby="emailHelp">
-    </div>
+  
+ 
     <div class="form-group">
       <label >email</label>
       <!-- put name to can use it in controler function store -->
@@ -39,15 +36,18 @@
     </div>
 
    
-    
-    <select name="pharamcy_id" class="form-control">
+    <div class="form-group">
+      <!-- put name to can use it in controler function store -->
+    <label for="exampleInputPassword1">Pharmacy Name</label>
+    <select name="pharmacy_id" class="form-control">
         @foreach($Pharmacys as $pharamcy)  
           <option value="{{$pharamcy->id}}">{{$pharamcy->name}}</option>
         @endforeach
         </select>
         </div>
-
+        <div class="form-group">
     <button type="submit" class="btn btn-primary">Update</button>
+    </div>
   </form>
     
 
@@ -57,5 +57,5 @@
     </div>
     <!-- /.content -->
   </div>
-  /.content-wrapper
+  <!-- /.content-wrapper -->
   @endsection

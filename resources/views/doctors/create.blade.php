@@ -24,42 +24,51 @@
     </div>
     <!-- /.content-header -->
    
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <!-- Main content -->
-    <form method="POST" action="{{route('doctors.store')}}">
+    <form method="POST" action="{{route('doctors.store')}}" enctype="multipart/form-data">
     @csrf
-    <div class="form-group">
+    <div class="form-group m-3">
       <label >name</label>
       <!-- put name to can use it in controler function store -->
-      <input name="name" type="text" class="form-control" aria-describedby="emailHelp">
+      <input  name="name" type="text" class="form-control" aria-describedby="emailHelp">
     </div>
-    <div class="form-group">
+    <div class="form-group m-3">
       <label >national_id</label>
       <!-- put name to can use it in controler function store -->
       <input name="national_id" type="text" class="form-control" aria-describedby="emailHelp">
     </div>
-    <div class="form-group">
+    <div class="form-group m-3">
       <label >password</label>
       <!-- put name to can use it in controler function store -->
       <input name="password" type="text" class="form-control" aria-describedby="emailHelp">
     </div>
 
-     <div class="form-group">
+     <div class="form-group m-3">
     <input type="file"  name="image" id="image" class='image'>
     </div>
 
-<div class="form-group">
+<div class="form-group m-3">
       <label >email</label>
 
       <!-- put name to can use it in controler function store -->
       <input name="email" type="text" class="form-control" aria-describedby="emailHelp">
     </div>
-    <div class="form-group">
+    <div class="form-group m-3">
       <label >is_banned</label>
       <!-- put name to can use it in controler function store -->
       <input name="is_banned" type="text" class="form-control" aria-describedby="emailHelp">
     </div>
 
-    <div class="form-group">
+    <div class="form-group m-3">
       <!-- put name to can use it in controler function store -->
     <label for="exampleInputPassword1">Pharmacy Name</label>
     <select name="pharmacy_id" class="form-control">
@@ -71,7 +80,7 @@
    
   
 
-         <button type="submit" class="btn btn-primary">Submit</button>
+         <button type="submit" class="btn btn-primary m-3">Submit</button>
   </form>
     
 

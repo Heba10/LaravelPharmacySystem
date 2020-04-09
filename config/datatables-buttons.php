@@ -65,7 +65,7 @@ return [
             'print',
             'reset',
             'reload',
-            'pageLength'
+            'pageLength',
         ],
     ],
 

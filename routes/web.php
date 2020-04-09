@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\DataTables\OrdersDataTable;
+use App\DataTables\pharmaciesDataTable;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::namespace('Admin')->prefix('admin')->group(function(){
 
 Route::namespace('Doctor')->prefix('doctors')->group(function(){
 
+
     Route::get('/login', 'Auth\DoctorLoginController@showLoginForm')->name('doctors.login');
     Route::get('/logout', 'Auth\DoctorLoginController@doctorLogout')->name('doctors.logout');
     Route::post('/login', 'Auth\DoctorLoginController@login')->name('doctors.login.submit');
@@ -49,6 +51,9 @@ Route::namespace('Doctor')->prefix('doctors')->group(function(){
     Route::put('/{doctor}', 'DoctorController@update')->name('doctors.update');
     Route::delete('/{doctor}', 'DoctorController@destroy')->name('doctors.destroy');
     Route::get('/{doctor}', 'DoctorController@show')->name('doctors.show');
+
+    Route::get('/ban/{doctor}', 'DoctorController@ban')->name('Doctor.ban');
+    Route::get('/unban/{doctor}', 'DoctorController@unban')->name('Doctor.unban');
 });
 
 //----------------------------------------------------------------------------
@@ -70,8 +75,8 @@ Route::namespace('Pharmacy')->prefix('pharmacy')->group(function(){
     Route::get('/logout', 'Auth\PharmacyLoginController@pharmacyLogout')->name('pharmacy.logout');
     Route::post('/login', 'Auth\PharmacyLoginController@login')->name('pharmacy.login.submit');
     
+    
     Route::get('/', 'PharmacyController@index')->name('pharmacy.index');
-
 
     Route::get('/create','PharmacyController@create')->name('pharmacy.create');
     Route::post('/','PharmacyController@store')->name('pharmacy.store');

@@ -30,23 +30,36 @@ class UserController extends Controller
     }
     //----------------------------this function to see his orders
     public function index(Request $request){
-           $userID=$request->user;
-           if(User::find($userID)){
-           $orders=Order::all()->where('order_user_id',$userID);
-           return $orders;  
-           }
-           else{
-            return response(['Error'=>'Not exist , plz check the id'],404)->header('Content-Type', 'application/json');
-           }
-    }
-    //-------------------------this function to view certain order details
-    public function show(Request $request){
-        $orderId=$request->order;
-        if(Order::find($orderId)){
-            return new  OrderResource(Order::find($orderId));
+        $userID=$request->user;
+        if(User::find($userID)){
+        $orders=Order::get()->where('order_user_id',$userID);
+        $i=0;
+        foreach($orders as $order){
+            $orderId=$order->id;
+            $per=Prescription::get()->where('order_id',$orderId);
+            $orderdetails=new OrderResource($order);
+            $allOrders[$i]=$orderdetails;
+            $i++;
+        }
+         return $allOrders;  
         }
         else{
+         return response(['Error'=>'Not exist , plz check the id'],404)->header('Content-Type', 'application/json');
+        }
+ }
+    //-------------------------this function to view certain order details
+    public function show(Request $request){
+        $userID=$request->user;
+        if(User::find($userID)){
+            if($order=Order::find($request->order)){
+            if($order->order_user_id==$userID)
+             return new OrderResource($order);
+            }
+             else{
+                 return response(['Error'=>'u dont have order with this id'],404)->header('Content-Type', 'application/json');
+             }
+            }
             return response(['Error'=>'Not exist , plz check the id'],404)->header('Content-Type', 'application/json');
-           } 
-    }
 }
+}
+
