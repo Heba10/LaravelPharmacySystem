@@ -66,6 +66,7 @@ Route::get('/orders', function (OrdersDataTable $datatable)
 Route::get('/orders/create', 'OrderController@create')->name('orders.create');
 Route::post('/orders', 'OrderController@store')->name('orders.store');
 Route::delete('/orders/{order}', 'OrderController@destroy')->name('orders.destroy');
+Route::post('/orders/fetch', 'OrderController@fetch')->name('orders.fetch');
 
 //----------------------------------------------------------------------------
 
