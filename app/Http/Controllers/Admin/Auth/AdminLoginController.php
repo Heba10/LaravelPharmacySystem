@@ -13,10 +13,6 @@ class AdminLoginController extends Controller
 
     use AuthenticatesUsers;
 
-    public function __construct()
-    {
-        $this->middleware('guest:admin')->except('adminLogout');
-    }
 
     public function showLoginForm()
     {

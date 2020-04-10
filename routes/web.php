@@ -19,17 +19,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
 Route::namespace('Admin')->prefix('admin')->group(function(){
 
-    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login')->middleware('guest:admin');
     Route::get('/logout', 'Auth\AdminLoginController@adminLogout')->name('admin.logout');
-    Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
-    Route::get('/', 'AdminController@index')->name('admin.index');
+    Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit')->middleware('guest:admin');
+    Route::get('/', 'AdminController@index')->name('admin.index')->middleware('auth:admin');
 });
 
 
