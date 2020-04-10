@@ -30,7 +30,7 @@ class UsersTableSeeder extends Seeder
         // $doctorRole = Role::where('name', 'doctor')->first();
 
 
-        $doctor = User::create([
+        $user = User::create([
 
             'name'            => 'user',
             'email'           => 'user@user.com',
