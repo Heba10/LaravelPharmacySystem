@@ -20,8 +20,7 @@ class pharmaciesDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables()
-            ->eloquent($query)
-            ->addColumn('action', 'pharmacies.action');
+            ->eloquent($query);
     }
 
     /**
@@ -42,10 +41,17 @@ class pharmaciesDataTable extends DataTable
      */
     public function html()
     {
-        return $this->builder()
+        return $this->builder() 
                     ->setTableId('pharmacies-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
+                   /*  ->addAction([
+                        'data' => 'id',
+                        'render' => function ()
+                      { 
+                            return 'function(data, type, row){return "<a href=\"/pharmacies/create\">Create</a>"}';}
+                       
+                    ]) */
                     ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(
@@ -73,7 +79,7 @@ class pharmaciesDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('national_id'),
-            Column::make('area_id'),
+            Column::make('area_id'), 
             Column::make('priority'),
             Column::make('email'),
             Column::make('image'),

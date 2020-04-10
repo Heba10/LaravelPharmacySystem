@@ -16,10 +16,10 @@ class CreateDoctorsTable extends Migration
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('password');
             $table->bigInteger('national_id');
             $table->text('image');
             $table->string('email')->unique();
+            $table->string('password');
             $table->boolean('is_banned');
             $table->bigInteger('pharmacy_id');
 
@@ -27,8 +27,7 @@ class CreateDoctorsTable extends Migration
 
 
 
-
-
+            $table->rememberToken();
             $table->timestamps();
         });
     }

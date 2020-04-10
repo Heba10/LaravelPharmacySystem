@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Doctor;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreDoctorRequest;
 use DataTables;
+use App\Http\Controllers\Controller;
+
+use App\Http\Requests\EditDoctorRequest;
 
 
 use App\Doctor;
@@ -14,10 +17,18 @@ use App\User;
 
 class DoctorController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:doctor');
+    }
+
+
     public function index(){
+        
         $doctors = Doctor::paginate(5);
         return view('doctors/index', [
-            'doctors'=> $doctors,
+                'doctors'=> $doctors,
             ]);
     }
 

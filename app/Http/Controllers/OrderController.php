@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Order;
 use App\User;
+use App\Medicine;
+
+use App\Prescription;
+
 
 
 class OrderController extends Controller
@@ -17,27 +21,18 @@ class OrderController extends Controller
     }
 
 
-    // public function create()
-    // {
-    //     $users = User::all();
-
-    //     return view('orders.create', [
-    //         'users' => $users
-    //     ]);
-    // }
-public function store( )
-    {   $request=request();
-        $order = $request->only(['is_insured','delivering_address_id']);
-        $order['order_user_id']=Auth::id();
-        $order['creator_type']="user";
-        $order["status_id"]=0;
-       
-        $order=Order::create($order);
-
-        if($request->hasFile('prescriptions'))
-            $order->prescriptions = $request->file('prescriptions');
-
-        return ["success"=>"your order was delivered successfully"];
+    public function create()
+    {
+        $users = User::all();
+        $medicines=Medicine::all();
+   
+          $statuses= ['New Order'=>'0'];
+         
+        return view('orders.create', [
+            'users' => $users,
+             'statuses' =>$statuses,
+            'medicines'=>$medicines
+        ]);
     }
 
 

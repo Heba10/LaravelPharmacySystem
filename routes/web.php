@@ -19,23 +19,42 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', 'AdminController@index')->name('admins.index');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
+
+Route::namespace('Admin')->prefix('admin')->group(function(){
+
+    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+    Route::get('/logout', 'Auth\AdminLoginController@adminLogout')->name('admin.logout');
+    Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+    Route::get('/', 'AdminController@index')->name('admin.index');
+});
 
 
 
+////////////////////////////////
 //-----------------------------------------------------------------------
 
-Route::get('/doctors', 'DoctorController@index')->name('doctors.index');
-Route::get('/doctors/create', 'DoctorController@create')->name('doctors.create');
-Route::post('/doctors', 'DoctorController@store')->name('doctors.store');
-Route::get('/doctors/{doctor}/edit', 'DoctorController@edit')->name('doctors.edit');
-Route::put('/doctors/{doctor}', 'DoctorController@update')->name('doctors.update');
-Route::delete('/doctors/{doctor}', 'DoctorController@destroy')->name('doctors.destroy');
-Route::get('/doctors/{doctor}', 'DoctorController@show')->name('doctors.show');
-Route::get('/ban/{doctor}', 'DoctorController@ban')->name('Doctor.ban');
-Route::get('/unban/{doctor}', 'DoctorController@unban')->name('Doctor.unban');
+Route::namespace('Doctor')->prefix('doctors')->group(function(){
 
 
+    Route::get('/login', 'Auth\DoctorLoginController@showLoginForm')->name('doctors.login');
+    Route::get('/logout', 'Auth\DoctorLoginController@doctorLogout')->name('doctors.logout');
+    Route::post('/login', 'Auth\DoctorLoginController@login')->name('doctors.login.submit');
+
+    Route::get('/', 'DoctorController@index')->name('doctors.index');
+    Route::get('/create', 'DoctorController@create')->name('doctors.create');
+    Route::post('/', 'DoctorController@store')->name('doctors.store');
+    Route::get('/{doctor}/edit', 'DoctorController@edit')->name('doctors.edit');
+    Route::put('/{doctor}', 'DoctorController@update')->name('doctors.update');
+    Route::delete('/{doctor}', 'DoctorController@destroy')->name('doctors.destroy');
+    Route::get('/{doctor}', 'DoctorController@show')->name('doctors.show');
+
+    Route::get('/ban/{doctor}', 'DoctorController@ban')->name('Doctor.ban');
+    Route::get('/unban/{doctor}', 'DoctorController@unban')->name('Doctor.unban');
+});
 
 //----------------------------------------------------------------------------
 
@@ -50,15 +69,26 @@ Route::delete('/orders/{order}', 'OrderController@destroy')->name('orders.destro
 
 //----------------------------------------------------------------------------
 
-Route::get('/pharmacy', 'PharmacyController@index')->name('pharmacy.index');
-/* Route::get('/pharmacy', function (PharmaciesDataTable $datatable)
-{
-    return $datatable->render('pharmacies/index');
-}); */
-Route::get('/pharmacy/create','PharmacyController@create')->name('pharmacy.create');
-Route::post('/pharmacy','PharmacyController@store')->name('pharmacy.store');
-Route::get('/pharmacy/{pharmacy}','PharmacyController@show')->name('pharmacy.show');
-Route::GET('/pharmacy/{pharmacy}/edit','PharmacyController@edit')->name('pharmacy.edit');
-Route::post('/pharmacy/{pharmacy}/','PharmacyController@update')->name('pharmacy.update');
-Route::get('/pharmacy/{pharmacy}/delete','PharmacyController@destroy')->name('pharmacy.destory');
-Route::get('revenues', 'RevenueController@index')->name('revenue.index');
+Route::namespace('Pharmacy')->prefix('pharmacy')->group(function(){
+
+    Route::get('/login', 'Auth\PharmacyLoginController@showLoginForm')->name('pharmacy.login');
+    Route::get('/logout', 'Auth\PharmacyLoginController@pharmacyLogout')->name('pharmacy.logout');
+    Route::post('/login', 'Auth\PharmacyLoginController@login')->name('pharmacy.login.submit');
+    
+    
+  //  Route::get('/', 'PharmacyController@index')->name('pharmacy.index');
+  Route::get('/', function (pharmaciesDataTable $datatable)
+  {
+      return $datatable->render('pharmacies/index');
+  })->name('pharmacy.index');
+    Route::get('/create','PharmacyController@create')->name('pharmacy.create');
+    Route::post('/','PharmacyController@store')->name('pharmacy.store');
+    Route::get('/{pharmacy}','PharmacyController@show')->name('pharmacy.show');
+    Route::GET('/{pharmacy}/edit','PharmacyController@edit')->name('pharmacy.edit');
+    Route::post('/{pharmacy}' ,'PharmacyController@update')->name('pharmacy.update');
+    Route::get('/{pharmacy}/delete','PharmacyController@destroy')->name('pharmacy.destory');
+    Route::get('/{pharmacy}/delete','PharmacyController@destroy')->name('pharmacy.destory');
+
+
+});
+Route::get('/revenues', 'RevenueController@index')->name('revenue.index');

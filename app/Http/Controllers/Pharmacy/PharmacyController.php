@@ -1,82 +1,86 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Pharmacy;
 
 use Illuminate\Http\Request;
 use App\Pharmacy; 
 use App\Doctor;
 use Illuminate\Support\Facades\Storage;
-
 use App\Http\Requests\PharmacyRequest;
 use Illuminate\Support\Facades\Hash;
-
+use App\Http\Controllers\Controller;
 
 
 
 class PharmacyController extends Controller
 {
-    public function index()
-    {
-            $Pharmacies = Pharmacy::paginate(5);
-            return view('pharmacies.index',[
-                'Pharmacies' => $Pharmacies,
-                ]);
-     }
+
+  public function __construct()
+  {
+      $this->middleware('auth:pharmacy');
+  }
+
+  public function index()
+  {
+    $Pharmacies = Pharmacy::paginate(5);
+      return view('pharmacies.index',[
+        'Pharmacies' => $Pharmacies
+    ]);
+  }
 
 
-     public function show()
-    {
-          $request=request();
-          $pharmacy_id=$request->pharmacy;
-          $pharmacy= Pharmacy::find($pharmacy_id);
+  public function show()
+  {
+    $request=request();
+    $pharmacy_id=$request->pharmacy;
+    $pharmacy= Pharmacy::find($pharmacy_id);
  
-          return view('pharmacies.show',[
-         'pharmacy'=>$pharmacy
-       ]);
-     }
+    return view('pharmacies.show',[
+      'pharmacy'=>$pharmacy
+    ]);
+  }
 
-
-     public function create()
-     {
-       return view('pharmacies.create');
-     }
+  public function create()
+  {
+    return view('pharmacies.create');
+  }
      
  
-     public function store( PharmacyRequest $request)
-    { 
+  public function store( PharmacyRequest $request)
+  { 
     // dd($request->image->store('images','public'));
-     Pharmacy::create([
-      /*  [ if ($request->hasFile("image")) { */
-       'name' => $request->name,
-       'password' => Hash::make($request->password),
-       'email' =>$request->email,
-       'area_id' =>$request->area_id,
-       'priority' =>$request->priority,
-       'national_id' =>$request->national_id,
-       'image' =>$request->image->store('images','public')
+      Pharmacy::create([
+    /*  [ if ($request->hasFile("image")) { */
+      'name' => $request->name,
+      'password' => Hash::make($request->password),
+      'email' =>$request->email,
+      'area_id' =>$request->area_id,
+      'priority' =>$request->priority,
+      'national_id' =>$request->national_id,
+      'image' =>$request->image->store('images','public')
 
 
- 
-     ]);
- 
-      session()->flash('success','Pharmacy created successfuly');
-      return redirect()->route('pharmacy.index');
-     }
+
+    ]);
+
+    session()->flash('success','Pharmacy created successfuly');
+    return redirect()->route('pharmacy.index');
+  }
  
  
 
 
-    public function edit()
-    { 
-      $request=request();
-     $pharmacy_id=$request->pharmacy;
-     $pharmacy= Pharmacy::find($pharmacy_id); 
- 
-     return view('pharmacies.edit',[
+  public function edit()
+  { 
+    $request=request();
+    $pharmacy_id=$request->pharmacy;
+    $pharmacy= Pharmacy::find($pharmacy_id); 
+
+    return view('pharmacies.edit',[
     
     'pharmacy'=>$pharmacy
     ]);
-     }
+  }
  
     
 

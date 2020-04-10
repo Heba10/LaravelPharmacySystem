@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Pharmacy System'),
 
     /*
     |--------------------------------------------------------------------------
@@ -175,9 +175,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
+        
         Yajra\DataTables\DataTablesServiceProvider::class,
 
-
+        // Spatie\Permission\PermissionServiceProvider::class,
 
     ],
 

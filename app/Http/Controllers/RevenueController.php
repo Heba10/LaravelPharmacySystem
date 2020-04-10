@@ -21,7 +21,7 @@ class RevenueController extends Controller
         $pharmacies = Pharmacy::all();
         foreach($pharmacies as $pharmacy)
             {
-                $orders=Order::where('pharamcy_id',$pharmacy->id)->get();
+                $orders=Order::where('pharmacy_id',$pharmacy->id)->get();
                 $TotalOrders=$orders->count();
                 $TotalRevenue=$orders->sum('total_price');
                 $pharmacies_total=$pharmacies_total+$TotalRevenue;
