@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(AreaTableSeeder::class);
 
-        
+        $this->call(PermissionsDemoSeeder::class);
 
+        
     }
 }
