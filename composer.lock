@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
+    "content-hash": "33c3626b9fecd731f5cb503308c7f2ba",
+=======
     "content-hash": "6f990f5e06b9c3d6763a6831231e1770",
+>>>>>>> 08a6d6b59c3e7aec3ff1220f7103af9876ebf5b7
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -232,12 +236,6 @@
                 "restrict",
                 "trait",
                 "user"
-            ],
-            "funding": [
-                {
-                    "url": "https://paypal.me/antonkomarev",
-                    "type": "custom"
-                }
             ],
             "time": "2020-03-06T20:56:55+00:00"
         },
@@ -5518,6 +5516,8 @@
                 "laravel"
             ],
             "time": "2020-03-03T16:32:17+00:00"
+<<<<<<< HEAD
+=======
         },
         {
             "name": "yajra/laravel-datatables-editor",
@@ -5638,6 +5638,7 @@
                 "laravel"
             ],
             "time": "2019-06-12T03:28:20+00:00"
+>>>>>>> 08a6d6b59c3e7aec3ff1220f7103af9876ebf5b7
         },
         {
             "name": "yajra/laravel-datatables-html",
@@ -7771,6 +7772,5 @@
     "platform": {
         "php": "^7.2.5"
     },
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }

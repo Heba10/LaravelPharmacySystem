@@ -34,7 +34,7 @@ Route::put('/addresses/{address}','Api\AddressController@update');
 //---------------------------this Route to add new address
 Route::post('/addresses','Api\AddressController@store');
 //---------------------------this Route to update el user info
-Route::put('/users/{user}','Api\UserController@update');
+Route::put('/users/{user}','Api\UserController@update')->middleware('verified');
 //-------------------------this Route to view all orders of certain user
 Route::get('/users/{user}/orders','Api\UserController@index');
 //--------------------------this Route to view certain order details
