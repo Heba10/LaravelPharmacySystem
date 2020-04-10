@@ -10,7 +10,4 @@ class Medicine_Order extends Model
 
 
 
-    public function order(){
-        return $this->belongsTo('App\Order');
-    }
 }

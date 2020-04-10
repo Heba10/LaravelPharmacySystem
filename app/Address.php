@@ -27,6 +27,11 @@ class Address extends Model
         return $this->belongsTo('App\Area');
 
     }
+    
+     public function orders()
+    {
+        return $this->hasMany('App\Order','delivering_address_id');
+    }
 
     public function orders()
     {

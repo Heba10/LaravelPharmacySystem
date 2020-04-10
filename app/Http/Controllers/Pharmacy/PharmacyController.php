@@ -6,10 +6,8 @@ use Illuminate\Http\Request;
 use App\Pharmacy; 
 use App\Doctor;
 use Illuminate\Support\Facades\Storage;
-
 use App\Http\Requests\PharmacyRequest;
 use Illuminate\Support\Facades\Hash;
-
 use App\Http\Controllers\Controller;
 
 
