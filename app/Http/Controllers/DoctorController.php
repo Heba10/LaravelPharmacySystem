@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreDoctorRequest;
-use App\Http\Requests\EditDoctorRequest;
+use DataTables;
 
 
 use App\Doctor;

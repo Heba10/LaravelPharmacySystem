@@ -61,3 +61,4 @@ Route::get('/pharmacy/{pharmacy}','PharmacyController@show')->name('pharmacy.sho
 Route::GET('/pharmacy/{pharmacy}/edit','PharmacyController@edit')->name('pharmacy.edit');
 Route::post('/pharmacy/{pharmacy}/','PharmacyController@update')->name('pharmacy.update');
 Route::get('/pharmacy/{pharmacy}/delete','PharmacyController@destroy')->name('pharmacy.destory');
+Route::get('revenues', 'RevenueController@index')->name('revenue.index');
