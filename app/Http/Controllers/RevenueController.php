@@ -33,15 +33,18 @@ class RevenueController extends Controller
                 ]);
             
             }
+
         if(request()->ajax())
         {    
             return DataTables()->of($rev)
             ->rawColumns(['action'])
             ->make(true);  
         }
+        else {
 
         return view('revenues',[
             'pharmacies_total' => $pharmacies_total,
         ]);
+        }
     }
 }

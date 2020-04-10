@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\DataTables\OrdersDataTable;
-use App\DataTables\pharmaciesDataTable;
+use App\DataTables\PharmaciesDataTable;
+use App\DataTables\DoctorsDataTable;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,14 +43,18 @@ Route::namespace('Doctor')->prefix('doctors')->group(function(){
     Route::get('/logout', 'Auth\DoctorLoginController@doctorLogout')->name('doctors.logout');
     Route::post('/login', 'Auth\DoctorLoginController@login')->name('doctors.login.submit');
 
+
+     Route::get('/datadoctor', function (DoctorsDataTable $datatable) 
+       {
+              return $datatable->render('doctors/index2');
+       })->name('doctors.index2');  
     Route::get('/', 'DoctorController@index')->name('doctors.index');
     Route::get('/create', 'DoctorController@create')->name('doctors.create');
     Route::post('/', 'DoctorController@store')->name('doctors.store');
-    Route::get('/{doctor}/edit', 'DoctorController@edit')->name('doctors.edit');
+    Route::get('doctors/{doctor}/edit', 'DoctorController@edit')->name('doctors.edit');
     Route::put('/{doctor}', 'DoctorController@update')->name('doctors.update');
     Route::delete('/{doctor}', 'DoctorController@destroy')->name('doctors.destroy');
     Route::get('/{doctor}', 'DoctorController@show')->name('doctors.show');
-
     Route::get('/ban/{doctor}', 'DoctorController@ban')->name('Doctor.ban');
     Route::get('/unban/{doctor}', 'DoctorController@unban')->name('Doctor.unban');
 });
@@ -57,10 +62,11 @@ Route::namespace('Doctor')->prefix('doctors')->group(function(){
 //----------------------------------------------------------------------------
 
 
-Route::get('/orders', function (OrdersDataTable $datatable)
+Route::get('/dataorder', function (OrdersDataTable $datatable)
 {
-    return $datatable->render('orders/index');
-});
+    return $datatable->render('orders/index2');
+})->name('orders.index2'); ;
+Route::get('/orders', 'OrderController@index')->name('orders.index');
 Route::get('/orders/create', 'OrderController@create')->name('orders.create');
 Route::post('/orders', 'OrderController@store')->name('orders.store');
 Route::delete('/orders/{order}', 'OrderController@destroy')->name('orders.destroy');
@@ -75,11 +81,11 @@ Route::namespace('Pharmacy')->prefix('pharmacy')->group(function(){
     Route::post('/login', 'Auth\PharmacyLoginController@login')->name('pharmacy.login.submit');
     
     
-  //  Route::get('/', 'PharmacyController@index')->name('pharmacy.index');
-  Route::get('/', function (pharmaciesDataTable $datatable)
+//    Route::get('/', 'PharmacyController@index')->name('pharmacy.index');
+   Route::get('/', function (PharmaciesDataTable $datatable)
   {
       return $datatable->render('pharmacies/index');
-  })->name('pharmacy.index');
+  })->name('pharmacy.index'); 
     Route::get('/create','PharmacyController@create')->name('pharmacy.create');
     Route::post('/','PharmacyController@store')->name('pharmacy.store');
     Route::get('/{pharmacy}','PharmacyController@show')->name('pharmacy.show');

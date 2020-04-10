@@ -1,5 +1,5 @@
 
-@extends('admin.layout.blank')
+@extends('doctors.layout.blank')
 
 @section('content')
   <!-- Content Wrapper. Contains page content -->
@@ -37,7 +37,6 @@
                   <th scope="col">national_id</th>
                   <th scope="col">image</th>
                   <th scope="col">email</th>
-                  <th scope="col">Created At</th>
                   <th scope="col">is_banned </th>
                   <th scope="col">Pharmacy Name </th>
                  
@@ -54,7 +53,6 @@
 
 
                   <td>{{ $doctor->email}}</td>
-                  <td>{{ $doctor->created_at->toDateString()}}</td>
                   <td>{{ $doctor->is_banned }}</td>
                  
                   <td>{{ $doctor->pharmacy ? $doctor->pharmacy->name : 'not exist'}}</td>

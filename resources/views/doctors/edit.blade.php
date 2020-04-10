@@ -1,4 +1,4 @@
-@extends('admin.layout.blank')
+@extends('doctors.layout.blank')
 
 @section('content')
 
@@ -49,13 +49,4 @@
     <button type="submit" class="btn btn-primary">Update</button>
     </div>
   </form>
-    
-
-
-
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
   @endsection

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Order;
 use App\User;
 use App\Medicine;
+use App\Doctor;
 
 use App\Prescription;
 
@@ -17,8 +18,11 @@ class OrderController extends Controller
 {
     public function index(){
         $orders = Order::paginate(5);
+        $doctors = Doctor::all();
         return view('orders/index', [
             'orders'=> $orders,
+            'doctors'=> $doctors,
+
             ]);
     }
 
@@ -36,30 +40,53 @@ class OrderController extends Controller
             'medicines'=>$medicines
         ]);
     }
+    public function show($id)
+    {
+        $order = Order::find($id);
+        
+        if($order)
+            return new OrderResource($order);
+        return ["error"=>"order not found"];
+    }
+    public function store(ApiOrderStoreRequest $request)
+    {
+        $order = $request->only(['is_insured','delivering_address_id']);
+        $order['order_user_id']=Auth::id();
+        $order['creator_type']="user";
+        $order["status_id"]=0;
+       
+        $order=Order::create($order);
+
+        if($request->hasFile('prescriptions'))
+            $order->prescriptions = $request->file('prescriptions');
+
+        return ["success"=>"your order was delivered successfully"];
+    }
 
 
+    public function update()
+    {  $request=request();
+        $order = Order::find($id);
 
-    // public function store()
-    // {
-    //      //get the request data
-    //      $request = request();
+        if(!$order)
+            return ["error"=>"resource not found"];
 
-    //      //store the request data in the db
-    //      Order::create([
-    //         // 'total_price'=>$request->total_price,
-    //         // 'creator_type'=>$request->creator_type,
-    //         'order_user_id'=>$request->order_user_id,
-    //         // 'pharmacy_id'=>$request->pharmacy_id,
-    //          'status_id'=>$request->status_id,
-    //         'is_insured' => $request->is_insured,
-    //          'doctor_id' => $request->doctor_id,
-    //          'delivering_address_id' =>  $request->delivering_address_id,
-            
-    //      ]);
-
-    //      return redirect()->route('posts.index');
-    // }
-
+        if($order->status_id!=0)
+            return ["error"=>"can't update that order as it's not in new status"];
+        
+                
+        if($request->hasFile('prescriptions'))
+            $order->prescriptions = $request->file('prescriptions'); 
+    
+        if($request->has('cancel'))
+            if($request->cancel==1){
+                $order->status_id=3;
+                $order->save();
+            }
+              
+        
+        return ["success"=>"updated sucessfully"];
+    }
 
 
 
