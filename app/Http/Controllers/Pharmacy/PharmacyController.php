@@ -21,8 +21,15 @@ class PharmacyController extends Controller
   }
 
   public function index()
-  {
+  {$Pharmacies=array();
     $Pharmacies = Pharmacy::paginate(5);
+    dd($Pharmacies);
+    if(request()->ajax())
+    {    
+        return datatables()->of($Pharmacies)
+        ->rawColumns(['action'])
+        ->make(true);  
+    }
       return view('pharmacies.index',[
         'Pharmacies' => $Pharmacies
     ]);
@@ -34,6 +41,7 @@ class PharmacyController extends Controller
     $request=request();
     $pharmacy_id=$request->pharmacy;
     $pharmacy= Pharmacy::find($pharmacy_id);
+
  
     return view('pharmacies.show',[
       'pharmacy'=>$pharmacy

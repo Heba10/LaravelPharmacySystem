@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Order;
+use App\Pharmacy;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class OrdersDataTable extends DataTable
+class PharmaciesDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,16 +21,16 @@ class OrdersDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'orders.action');
+            ->addColumn('action', 'doctors.action');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Order $model
+     * @param \App\Pharmacy $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Order $model)
+    public function query(Pharmacy $model)
     {
         return $model->newQuery();
     }
@@ -42,11 +42,15 @@ class OrdersDataTable extends DataTable
      */
     public function html()
     {
-        return $this->builder()
-                    ->setTableId('orders-table')
+        return $this->builder() 
+                    ->setTableId('pharmacies-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                 
+                    
+                    /* 'data' => 'image',
+                    'render' => function(data, type, full, meta){
+                        return "<img src=/images/" + data + " alt='image' height='42' width='42' />";
+                    }]) */
                     ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(
@@ -66,17 +70,20 @@ class OrdersDataTable extends DataTable
     protected function getColumns()
     {
         return [
-           
+            Column::computed('action')
+                  ->exportable(false)
+                  ->printable(false)
+                  ->width(60)
+                  ->addClass('text-center'),
             Column::make('id'),
-            Column::make('delivering_address_id'),
-            Column::make('doctor_id'),
-            Column::make('is_insured'),
-            Column::make('status_id'),
-            Column::make('pharmacy_id'),
-            Column::make('order_user_id'),
-            Column::make('creator_type'),
-            Column::make('total_price'),
-           
+            Column::make('name'),
+            Column::make('national_id'),
+            Column::make('area_id'), 
+            Column::make('priority'),
+            Column::make('email'),
+
+        
+
         ];
     }
 
@@ -87,6 +94,6 @@ class OrdersDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Orders_' . date('YmdHis');
+        return 'Pharmacies_' . date('YmdHis');
     }
 }

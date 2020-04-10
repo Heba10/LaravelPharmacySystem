@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\pharmacy;
+use App\Doctor;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class pharmaciesDataTable extends DataTable
+class DoctorsDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -26,10 +26,10 @@ class pharmaciesDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\pharmacy $model
+     * @param \App\Doctor $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(pharmacy $model)
+    public function query(Doctor $model)
     {
         return $model->newQuery();
     }
@@ -41,25 +41,16 @@ class pharmaciesDataTable extends DataTable
      */
     public function html()
     {
-        return $this->builder() 
-                    ->setTableId('pharmacies-table')
+        return $this->builder()
+                    ->setTableId('doctors-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                   /*  ->addAction([
-                        'data' => 'id',
-                        'render' => function ()
-                      { 
-                            return 'function(data, type, row){return "<a href=\"/pharmacies/create\">Create</a>"}';}
-                       
-                    ]) */
                     ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(
                         Button::make('create'),
-                        Button::make('export'),
-                        Button::make('print'),
                         Button::make('reset'),
-                        Button::make('reload')
+
                     );
     }
 
@@ -71,19 +62,15 @@ class pharmaciesDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
+           
             Column::make('id'),
             Column::make('name'),
             Column::make('national_id'),
-            Column::make('area_id'), 
-            Column::make('priority'),
             Column::make('email'),
-            Column::make('image'),
-        
+            Column::make('is_banned'),
+            Column::make('pharmacy_id'), 
+
+
 
         ];
     }
@@ -95,6 +82,6 @@ class pharmaciesDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'pharmacies_' . date('YmdHis');
+        return 'Doctors_' . date('YmdHis');
     }
 }

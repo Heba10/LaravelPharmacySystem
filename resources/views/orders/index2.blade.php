@@ -11,7 +11,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Doctors</h1> <!-- here we can add title to every page -->
+            <h1 class="m-0 text-dark">Orders </h1> <!-- here we can add title to every page -->
           </div><!-- /.col -->
           {{-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -29,7 +29,7 @@
       <div class="container-fluid">
 
           <!-- add your tables or form here -->
-          {{ $dataTable->table() }}
+           {{ $dataTable->table() }}
            <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -41,9 +41,6 @@
           <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.bootstrap4.min.js"></script>
           <script src="{{url('/vendor/datatables/buttons.server-side.js')}}"></script>
            {{ $dataTable->scripts()}}
-
-    <a href="{{route('doctors.index')}}" class="btn btn-primary btn-sm">Back</a></td>
-
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
