@@ -2,10 +2,21 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Pharmacy extends Model
+use Spatie\Permission\Traits\HasRoles;
+
+
+class Pharmacy extends Authenticatable
 {
+
+    use HasApiTokens, Notifiable;
+    use HasRoles;
+
+    protected $guard = 'pharmacy';
+    
     protected $fillable = [
         'name',
         'national_id',
@@ -14,10 +25,6 @@ class Pharmacy extends Model
         'password',
         'area_id',
         'priority',
-        
-
-
-      
     ];
     
     public function medicine()
@@ -29,6 +36,10 @@ class Pharmacy extends Model
     public function area(){
         return $this->belongsTo('App\Area');
     }
+
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
     
 
 }

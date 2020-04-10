@@ -17,9 +17,11 @@ class OrderResource extends JsonResource
      */
     public function toArray($request)
     {
-         return ['User Name'=>$user->id,'Email'=>$this->user,
-        'Gender'=>$this->user,'Address'=>['Area'=>$this->area,
-        'Street'=>$this->street_name,'building'=>$this->building_number,'floor'=>$this->floor_number,
-        'flat'=>$this->flat_number,'main'=>($this->is_main==0)? False:True]];
+        $per=Prescription::all()->where('order_id',$this->id);
+        $user=User::find($this->order_user_id);
+        $address=Address::find($this->delivering_address_id);
+        return ['Order_Address'=>['street_name'=>$address->street_name,'building number'=>$address->building_number,
+                'flat number'=>$address->flat_number,'floor number'=>$address->floor_number],
+               'Pharmacy'=>$this->pharmacy->name,'owner'=>$user->name,'Prescriptions'=>$per];
     }
 }

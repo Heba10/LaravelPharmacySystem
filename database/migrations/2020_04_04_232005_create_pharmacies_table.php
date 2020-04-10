@@ -15,13 +15,17 @@ class CreatePharmaciesTable extends Migration
     {
         Schema::create('pharmacies', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique();
             $table->string('name');
-            $table->string('password');
             $table->bigInteger('national_id');
             $table->text('image');
+            $table->string('email')->unique();
+            $table->string('password');
             $table->bigInteger('area_id');
             $table->bigInteger('priority');
+
+
+
+            $table->rememberToken();
             $table->timestamps();      
           });
     }

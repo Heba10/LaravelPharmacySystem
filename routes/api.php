@@ -17,12 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::post('register', 'UserController@register');
+//-----------------------this Route for verification
+Auth::routes(['verify' => true]);
+//-------------------------------------------those Routes to register and get token and then to login 
+Route::post('register', 'UserController@register')->middleware('verified');
 Route::post('login', 'UserController@login');
 // Route::PUT('/users/{user}','UserController@update')->name('users.update');
 
 //---------------------------this Route to show el user address
+Route::group(['middleware' => ['CheckClientCredentials','auth:api']], function() {
 Route::get('/addresses/{address}','Api\AddressController@show');
 //---------------------------this Route to delete address
 Route::delete('/addresses/{address}','Api\AddressController@destroy');
@@ -41,3 +44,4 @@ Route::post('users/{user}/orders','Api\OrderController@store');
 //-----------------------------this Route to edit order details
 Route::put('users/{user}/orders/{order}','Api\OrderController@update');
 
+});

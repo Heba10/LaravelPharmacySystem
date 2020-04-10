@@ -7,12 +7,12 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class AdminController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:admin');
     }
 
     /**
@@ -24,9 +24,7 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view('admin.users.index',[
-            'users' => $users
-        ]);
+        return view('admin.index');
     }
 
     /**
@@ -95,3 +93,4 @@ class UserController extends Controller
         //
     }
 }
+
