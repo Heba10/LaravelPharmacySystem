@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Order;
 use App\User;
+use App\Medicine;
+
+use App\Prescription;
+
 
 
 class OrderController extends Controller
@@ -20,9 +24,14 @@ class OrderController extends Controller
     public function create()
     {
         $users = User::all();
-
+        $medicines=Medicine::all();
+   
+          $statuses= ['New Order'=>'0'];
+         
         return view('orders.create', [
-            'users' => $users
+            'users' => $users,
+             'statuses' =>$statuses,
+            'medicines'=>$medicines
         ]);
     }
 

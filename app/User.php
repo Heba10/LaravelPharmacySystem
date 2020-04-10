@@ -6,9 +6,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Cog\Contracts\Ban\Bannable as BannableContract;
 use Cog\Laravel\Ban\Traits\Bannable;
 
+use Spatie\Permission\Traits\HasRoles;
+
+
 class User extends Authenticatable implements BannableContract
 {
-    use HasApiTokens, Notifiable, Bannable;
+    use HasApiTokens, Notifiable;
+    use HasRoles;
+    use Bannable;
     
 
   /**
@@ -28,12 +33,6 @@ class User extends Authenticatable implements BannableContract
         'password', 'remember_token',
   ];
 
-  //relation between Role and User mant to many
-  public function roles(){
-
-    return $this->belongsToMany('App\Role');
-
-  }
 
 
 } //end of class
