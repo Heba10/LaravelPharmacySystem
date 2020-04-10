@@ -24,7 +24,7 @@ class Order extends Model
     public function address(){
         return $this->belongsTo('App\Addresses');
     }
-    public function statuses(){
+    public function statuse(){
         return $this->belongsTo('App\Statuses');
     }
 
@@ -36,5 +36,9 @@ class Order extends Model
 
     public function doctor(){
         return $this->belongsTo('App\Doctor');
+    }
+    
+    public function pharmacy(){
+        return $this->belongsTo('App\Pharmacy');
     }
 }

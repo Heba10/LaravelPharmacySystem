@@ -6,6 +6,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use App\User;
 use App\Address;
 use App\Area;
+use App\Prescription;
+
+
 
 class OrderResource extends JsonResource
 {

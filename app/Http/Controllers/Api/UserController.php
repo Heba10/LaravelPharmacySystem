@@ -8,6 +8,8 @@ use App\User;
 use DateTime;
 use App\Address;
 use App\Order;
+use App\Prescription;
+
 use App\Http\Resources\OrderResource;
 
 class UserController extends Controller

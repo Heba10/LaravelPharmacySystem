@@ -33,10 +33,7 @@ class Address extends Model
         return $this->hasMany('App\Order','delivering_address_id');
     }
 
-    public function orders()
-    {
-        return $this->hasMany('App\Order','delivering_address_id');
-    }
+  
 
 
     
