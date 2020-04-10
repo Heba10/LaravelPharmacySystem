@@ -64,6 +64,7 @@ Route::get('/orders', function (OrdersDataTable $datatable)
 Route::get('/orders/create', 'OrderController@create')->name('orders.create');
 Route::post('/orders', 'OrderController@store')->name('orders.store');
 Route::delete('/orders/{order}', 'OrderController@destroy')->name('orders.destroy');
+Route::post('/orders/fetch', 'OrderController@fetch')->name('orders.fetch');
 
 //----------------------------------------------------------------------------
 
@@ -74,12 +75,19 @@ Route::namespace('Pharmacy')->prefix('pharmacy')->group(function(){
     Route::post('/login', 'Auth\PharmacyLoginController@login')->name('pharmacy.login.submit');
     
     
-    Route::get('/', 'PharmacyController@index')->name('pharmacy.index');
-
+  //  Route::get('/', 'PharmacyController@index')->name('pharmacy.index');
+  Route::get('/', function (pharmaciesDataTable $datatable)
+  {
+      return $datatable->render('pharmacies/index');
+  })->name('pharmacy.index');
     Route::get('/create','PharmacyController@create')->name('pharmacy.create');
     Route::post('/','PharmacyController@store')->name('pharmacy.store');
     Route::get('/{pharmacy}','PharmacyController@show')->name('pharmacy.show');
     Route::GET('/{pharmacy}/edit','PharmacyController@edit')->name('pharmacy.edit');
     Route::post('/{pharmacy}' ,'PharmacyController@update')->name('pharmacy.update');
     Route::get('/{pharmacy}/delete','PharmacyController@destroy')->name('pharmacy.destory');
+    Route::get('/{pharmacy}/delete','PharmacyController@destroy')->name('pharmacy.destory');
+
+
 });
+Route::get('/revenues', 'RevenueController@index')->name('revenue.index');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth; 
 use Illuminate\Http\Request;
+use App\Notifications\notes;
 use App\User;
 use Validator;
 
@@ -26,13 +27,16 @@ class UserController extends Controller
                 $user = User::create($input); 
                 $success['token'] =  $user->createToken('MyApp')-> accessToken; 
                 $success['name'] =  $user->name;
+                $user->notify(new notes($user));
         return response()->json(['success'=>$success],$this-> successStatus); 
     }
 
 
     public function login(){ 
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){ 
-            $user = Auth::user(); 
+            $user = Auth::user();
+            $user->last_login_at = date('Y-m-d H:i:s');
+            $user->save();
             $success['token'] =  $user->createToken('MyApp')-> accessToken; 
             return response()->json(['success' => $success], $this-> successStatus); 
         } 

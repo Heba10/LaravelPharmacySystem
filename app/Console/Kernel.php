@@ -3,6 +3,9 @@
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Facades\DB;
+use App\User;
+use Mail;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -25,6 +28,19 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+       $schedule->call(function (){
+           $users=User::all()->where('last_login_at', '>=', new DateTime('-1 months'));
+            foreach ($users as $user){
+                $data['title'] = "Ur last order with from more than one month ago";
+ 
+                Mail::send('emails.email', $data, function($message) {
+         
+                    $message->to($user->email, $user->name)
+         
+                            ->subject('We miss u');
+                });
+            }
+       })->daily();
     }
 
     /**

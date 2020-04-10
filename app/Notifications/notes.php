@@ -41,13 +41,14 @@ class notes extends Notification
 
         public function toMail($notifiable)
         {
-            $url = url('/users/'.$this->user->id.'/orders');
-            return (new MailMessage)
-            ->greeting('Hello!')
-            ->line('One of your invoices has been paid!')
-            ->action('View Invoice', $url)
-            ->line('Thank you for using our application!');
-        }
+            $url = url('/');
+
+             return (new MailMessage)
+                ->greeting('Hello!')
+                ->line('One of your invoices has been paid!')
+                ->action('View Invoice', $url)
+                ->line('Thank you for using our application!');
+}
     
 
     /**
